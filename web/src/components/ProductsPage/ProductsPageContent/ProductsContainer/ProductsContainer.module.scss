@@ -1,8 +1,13 @@
 .container {
-	flex: 1;
+    flex: 1;
 
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-row-gap: 10px;
 
-	overflow: auto;
+    &>* {
+        justify-self: center;
+    }
+
+    overflow: auto;
 }
