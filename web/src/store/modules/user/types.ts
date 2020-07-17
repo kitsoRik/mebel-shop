@@ -4,4 +4,5 @@ export interface UserData {
 
 export interface UserState {
 	data: UserData | null;
+	dataLoading: boolean;
 }

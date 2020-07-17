@@ -1,18 +1,20 @@
 import { Layout } from "antd";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { useLocation } from "react-router";
 import { compose } from "redux";
+import Admin from "./Admin";
 import classes from "./App.module.scss";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Routes from "./Routes";
-import { getUserData } from "./store/modules/user/actions";
 
 interface Props {
 	getUserData?: Function;
 }
 
 function App({ getUserData }: Props) {
+	if (useLocation().pathname.startsWith("/admin")) return <Admin />;
 	return (
 		<Layout className={classes.App}>
 			<Header />
@@ -24,8 +26,4 @@ function App({ getUserData }: Props) {
 	);
 }
 
-const mapDispatchToProps = { getUserData };
-
-const enhance = compose(connect(null, mapDispatchToProps));
-
-export default enhance(App);
+export default App;

@@ -1,22 +1,24 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getUserDataAction } from "./actions";
+import { authCreator, signInCreator } from "./actions";
 import { UserState } from "./types";
 
 const initialState: UserState = {
 	data: null,
+	dataLoading: true,
 };
 
 const userReducer = createReducer(initialState, {
-	[getUserDataAction.pending.type]: (state, action: any) => {
-		console.log(action);
-		return {
-			data: { id: "" },
-		};
+	[authCreator.fulfilled.type]: (state, action) => {
+		return { ...state, data: null, dataLoading: true };
 	},
-	[getUserDataAction.fulfilled.type]: (state, action: any) => {
+	[authCreator.fulfilled.type]: (state, action) => {
+		return { ...state, data: action.payload.user, dataLoading: false };
+	},
+	[signInCreator.fulfilled.type]: (state, action) => {
 		console.log(action);
 		return {
-			data: { id: "" },
+			...state,
+			data: action.payload.user,
 		};
 	},
 });

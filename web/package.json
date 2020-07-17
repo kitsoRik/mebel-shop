@@ -4,6 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"@ant-design/icons": "^4.2.1",
+		"@mebel-shop/data-objects": "file:../packages/data-objects",
 		"@reduxjs/toolkit": "^1.4.0",
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.3.2",
@@ -16,6 +17,9 @@
 		"@types/react-router": "^5.1.8",
 		"@types/react-router-dom": "^5.1.5",
 		"antd": "^4.4.2",
+		"axios": "^0.19.2",
+		"cookie-parser": "^1.4.5",
+		"formik": "^2.1.5",
 		"node-sass": "^4.14.1",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",

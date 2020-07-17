@@ -1,7 +1,6 @@
 import React from "react";
-import { Route, Switch } from "react-router";
+import { Route, Switch, useLocation } from "react-router";
 import ProductPageSofa from "./components/ProductPage/ProductPageSofa";
-import Admin from "./scenes/Admin";
 import Home from "./scenes/Home";
 import Products from "./scenes/Products";
 import ProductsSofas from "./scenes/Products/ProductsSofas";
@@ -27,8 +26,6 @@ const Routes = () => {
 					/>
 				</>
 			))}
-
-			<Route path="/admin" component={Admin} />
 		</Switch>
 	);
 };
