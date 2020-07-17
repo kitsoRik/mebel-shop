@@ -1,0 +1,26 @@
+{
+	"name": "@mebel-shop/data-objects",
+	"version": "0.0.0",
+	"description": "Objects for mebel-shop",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"source": "src/index.ts",
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "tsc",
+		"start:dev": "nodemon",
+		"build": "tsc"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"nodemon": "^2.0.4",
+		"typescript": "^3.9.7"
+	},
+	"files": [
+		"dist"
+	]
+}

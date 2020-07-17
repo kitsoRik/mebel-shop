@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"outDir": "dist",
+		"target": "ES5",
+		"module": "CommonJS",
+		"sourceMap": true,
+		"declaration": true,
+
+		"strict": true,
+
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true
+	},
+	"include": ["src/index.ts"],
+	"exclude": ["dist", "node_modules"]
+}

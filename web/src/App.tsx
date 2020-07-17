@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useLocation } from "react-router";
 import { compose } from "redux";
-import Admin from "./Admin";
+import AdminRoot from "./Admin/Root";
 import classes from "./App.module.scss";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -14,7 +14,7 @@ interface Props {
 }
 
 function App({ getUserData }: Props) {
-	if (useLocation().pathname.startsWith("/admin")) return <Admin />;
+	if (useLocation().pathname.startsWith("/admin")) return <AdminRoot />;
 	return (
 		<Layout className={classes.App}>
 			<Header />

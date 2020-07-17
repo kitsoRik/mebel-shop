@@ -1,16 +1,17 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { join } from 'path';
 
 @Module({
 	imports: [
 		TypeOrmModule.forRoot({
-			type: 'mongodb',
-			url: 'mongodb://localhost:27017/mebel-shop',
-			entities: [join(__dirname, '/../**/**.entity.{ts,js}')],
+			type: 'postgres',
+			host: 'localhost',
+			port: 5432,
+			username: 'postgres',
+			password: 'postgres',
+			database: 'mebel-shop',
+			entities: [__dirname + '/../**/*.entity.{js,ts}'],
 			synchronize: true,
-			useNewUrlParser: true,
-			logging: true,
 		}),
 	],
 })

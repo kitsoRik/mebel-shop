@@ -5,6 +5,6 @@ import * as uuid from 'uuid';
 @EntityRepository(Sofa)
 export class SofaRepository extends Repository<Sofa> {
 	async addSofa(): Promise<Sofa> {
-		return await this.create({ id: uuid.v4(), name: 'Qwe' }).save();
+		return await this.create({ name: 'Qwe' }).save();
 	}
 }
