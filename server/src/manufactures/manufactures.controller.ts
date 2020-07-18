@@ -5,8 +5,11 @@ import {
 	Post,
 	Put,
 	Query,
+	Req,
+	UseGuards,
 	ValidationPipe,
 } from '@nestjs/common';
+import { AccessAdmin } from '../auth/user/users.decorator';
 import { AddManufactureDto } from './dto/add-manufacture.dto';
 import { GetManufacturesDto } from './dto/get-manufactures.dto';
 import { Manufacture } from './manufacture/manufacture.entity';
@@ -17,6 +20,7 @@ export class ManufacturesController {
 	constructor(private manufacturesService: ManufacturesService) {}
 
 	@Post('/')
+	@AccessAdmin()
 	addManufacture(
 		@Body(ValidationPipe) addManufactureDto: AddManufactureDto,
 	): Promise<Manufacture> {
@@ -24,6 +28,7 @@ export class ManufacturesController {
 	}
 
 	@Get('/')
+	@AccessAdmin()
 	getManufactures(
 		@Query(ValidationPipe) getManufacturesDto: GetManufacturesDto,
 	): Promise<{ manufactures: Manufacture[]; count: number }> {

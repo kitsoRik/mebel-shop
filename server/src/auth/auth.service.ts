@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Request, Response } from 'express';
 import { SignInDto } from './dto/sign-in.dto';
@@ -13,30 +14,29 @@ export class AuthService {
 		private userRepository: UserRepository,
 		@InjectRepository(SessionRepository)
 		private sessionRepository: SessionRepository,
+		private jwtService: JwtService,
 	) {}
 
 	async auth(req: Request): Promise<User> {
-		const { sesid } = req.cookies;
-		if (!sesid) return;
+		if (!req.user) throw new Error('req.user undefined');
 
-		const session = await this.sessionRepository.getSessionBySesid(sesid);
+		const { user }: any = req.user;
 
-		if (!session) return;
-
-		const user = await this.userRepository.getUserById(session.userId);
-
-		return user;
+		return await this.userRepository.getUserById(user.id);
 	}
 
-	async signIn(signInDto: SignInDto, res: Response): Promise<User> {
+	async signIn(
+		signInDto: SignInDto,
+	): Promise<{ accessToken: string; user: User }> {
 		const user = await this.userRepository.signIn(signInDto);
+		let accessToken = '';
 		if (!user) {
 			throw new NotFoundException();
 		}
-		if (signInDto.remember) {
-			const session = await this.sessionRepository.createSession(user.id);
-			res.cookie('sesid', session.sesid);
-		}
-		return user;
+		const payload = {
+			user: { id: user.id, role: 'admin', username: user.username },
+		};
+		accessToken = await this.jwtService.sign(payload);
+		return { user, accessToken };
 	}
 }

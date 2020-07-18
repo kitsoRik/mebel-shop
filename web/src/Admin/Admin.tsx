@@ -28,7 +28,9 @@ const Admin = ({ authUser }: Props) => {
 	const content = !data ? <LoginContent /> : <AdminContent />;
 
 	useEffect(() => {
-		authUser!();
+		try {
+			authUser!();
+		} catch (e) {}
 	}, []);
 
 	if (dataLoading) return null;

@@ -24,6 +24,14 @@ export const signInCreator = createAsyncThunk(
 	}
 );
 
+export const signOutCreator = createAsyncThunk("user/SIGN_OUT", async () => {
+	adminApi.auth.signOut();
+
+	localStorage.removeItem("accessToken");
+});
+
+export const auth = () => authCreator();
+
 export const signIn = (
 	username: string,
 	password: string,
@@ -32,4 +40,4 @@ export const signIn = (
 	return signInCreator({ username, password, remember });
 };
 
-export const auth = () => authCreator();
+export const signOut = () => signOutCreator();

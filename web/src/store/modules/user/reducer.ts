@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { authCreator, signInCreator } from "./actions";
+import { authCreator, signInCreator, signOutCreator } from "./actions";
 import { UserState } from "./types";
 
 const initialState: UserState = {
@@ -8,17 +8,25 @@ const initialState: UserState = {
 };
 
 const userReducer = createReducer(initialState, {
-	[authCreator.fulfilled.type]: (state, action) => {
+	[authCreator.pending.type]: (state, action) => {
 		return { ...state, data: null, dataLoading: true };
 	},
 	[authCreator.fulfilled.type]: (state, action) => {
 		return { ...state, data: action.payload.user, dataLoading: false };
 	},
+	[authCreator.rejected.type]: (state, action) => {
+		return { ...state, data: null, dataLoading: false };
+	},
 	[signInCreator.fulfilled.type]: (state, action) => {
-		console.log(action);
 		return {
 			...state,
 			data: action.payload.user,
+		};
+	},
+	[signOutCreator.fulfilled.type]: (state, action) => {
+		return {
+			...state,
+			data: null,
 		};
 	},
 });

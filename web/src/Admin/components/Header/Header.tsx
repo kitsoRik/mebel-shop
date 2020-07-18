@@ -1,8 +1,28 @@
-import { Layout } from "antd";
+import classes from "./Header.module.scss";
+import { Button, Layout } from "antd";
 import React from "react";
+import { compose } from "redux";
+import { connect, useSelector } from "react-redux";
+import { signOut } from "../../../store/modules/user/actions";
+import { selectUserDataFromRootReducer } from "../../../store/modules/user/selectors";
 
-const Header = () => {
-	return <Layout.Header>123</Layout.Header>;
+interface Props {
+	signOut?: typeof signOut;
+}
+
+const Header = ({ signOut }: Props) => {
+	const data = useSelector(selectUserDataFromRootReducer);
+
+	return (
+		<Layout.Header className={classes.adminHeader}>
+			{data && <Button onClick={signOut}>Вийти</Button>}
+		</Layout.Header>
+	);
 };
 
-export default Header;
+const mapDispatchToProps = { signOut };
+
+const enhance = compose(connect(null, mapDispatchToProps));
+
+// @ts-ignore
+export default enhance(Header);

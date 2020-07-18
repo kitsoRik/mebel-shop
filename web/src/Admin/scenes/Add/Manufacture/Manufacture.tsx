@@ -3,21 +3,22 @@ import { useForm } from "antd/lib/form/Form";
 import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { addManufacture } from "../../store/modules/manufactures/actions";
+import { addManufacture } from "../../../store/modules/manufactures/actions";
 
 const layout = {
-	labelCol: { span: 8 },
+	labelCol: { span: 1 },
 	wrapperCol: { span: 16 },
 };
 const tailLayout = {
-	wrapperCol: { offset: 8, span: 16 },
+	wrapperCol: { offset: 1, span: 16 },
 };
 
 interface Props {
 	addManufacture?: typeof addManufacture;
+	onAdded?: () => void;
 }
 
-const Manufacture = ({ addManufacture }: Props) => {
+const Manufacture = ({ addManufacture, onAdded }: Props) => {
 	const [form] = useForm();
 
 	const onFinish = async () => {
@@ -25,6 +26,8 @@ const Manufacture = ({ addManufacture }: Props) => {
 		const { error }: any = await addManufacture!(name);
 		if (error) {
 			console.log(error);
+		} else {
+			if (onAdded) onAdded();
 		}
 	};
 
@@ -33,7 +36,6 @@ const Manufacture = ({ addManufacture }: Props) => {
 	return (
 		<Form
 			form={form}
-			{...layout}
 			name="basic"
 			initialValues={{ remember: true }}
 			onFinish={onFinish}
@@ -46,7 +48,7 @@ const Manufacture = ({ addManufacture }: Props) => {
 			>
 				<Input />
 			</Form.Item>
-			<Form.Item {...tailLayout}>
+			<Form.Item wrapperCol={{ offset: 10, span: 16 }}>
 				<Button type="primary" htmlType="submit">
 					Додати
 				</Button>

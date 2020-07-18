@@ -4,8 +4,10 @@ import {
 	Post,
 	Req,
 	Res,
+	UseGuards,
 	ValidationPipe,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { SignInDto } from './dto/sign-in.dto';
@@ -16,17 +18,15 @@ export class AuthController {
 	constructor(private authService: AuthService) {}
 
 	@Post('/')
+	@UseGuards(AuthGuard())
 	async auth(@Req() req: Request): Promise<User> {
-		return this.authService.auth(req);
+		return await this.authService.auth(req);
 	}
 
 	@Post('/signIn')
 	async signIn(
 		@Body(ValidationPipe) signInDto: SignInDto,
-		@Res() res: Response,
-	): Promise<User> {
-		const user = await this.authService.signIn(signInDto, res);
-		res.send(user);
-		return user;
+	): Promise<{ user: User; accessToken: string }> {
+		return await this.authService.signIn(signInDto);
 	}
 }

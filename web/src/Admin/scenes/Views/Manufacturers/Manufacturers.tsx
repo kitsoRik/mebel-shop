@@ -1,35 +1,39 @@
-import { Avatar, List, Skeleton } from "antd";
+import { Avatar, Button, Form, List, Skeleton } from "antd";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { compose } from "redux";
-import { useAdminSelector } from "../../../store";
+import ViewsList from "../../../components/ViewsList";
+import { AdminState, useAdminSelector } from "../../../store";
 import { getManufactures } from "../../../store/modules/manufactures/actions";
 import { Manufacture } from "../../../store/modules/manufactures/types";
+import AddManufacture from "../../Add/Manufacture";
+import EditForm from "./EditForm";
 
 interface Props {
 	getManufactures?: typeof getManufactures;
 }
 
 const Manufacturers = ({ getManufactures }: Props) => {
-	useEffect(() => {
-		getManufactures!(1);
-	}, []);
-	const { manufactures } = useAdminSelector(
-		({ manufactures: { manufactures } }) => ({
-			manufactures,
-		})
-	);
+	const itemSelector = ({ manufactures: { manufactures } }: AdminState) =>
+		manufactures;
+
 	return (
-		<List
-			style={{ width: "100%", height: "100%", background: "white" }}
-			loading={false}
-			dataSource={manufactures}
-			renderItem={({ id, name }) => (
+		<ViewsList
+			addForm={<AddManufacture />}
+			editForm={<EditForm />}
+			getActions={getManufactures!}
+			itemsSelector={itemSelector}
+			renderItem={(onEdit) => ({ id, name }: Manufacture) => (
 				<List.Item
 					actions={[
-						<a key="list-loadmore-edit">Редагувати</a>,
-						<a key="list-loadmore-more">Детальніше</a>,
+						<Button
+							key="list-loadmore-edit"
+							onClick={() => onEdit(id)}
+						>
+							Редагувати
+						</Button>,
+						<Button key="list-loadmore-more">Детальніше</Button>,
 					]}
 				>
 					<List.Item.Meta

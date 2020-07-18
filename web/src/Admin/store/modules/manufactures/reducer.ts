@@ -9,8 +9,11 @@ const initialState: ManufacturesState = {
 
 export const manufacturesReducer = createReducer(initialState, {
 	[addManufactureCreator.fulfilled.type]: (state, action) => {
+		console.log(action);
 		return {
 			...state,
+			manufactures: [...state.manufactures, action.payload.manufacture],
+			manufacturesNumbers: state.manufacturesNumbers + 1,
 		};
 	},
 
@@ -18,7 +21,7 @@ export const manufacturesReducer = createReducer(initialState, {
 		return {
 			...state,
 			manufactures: action.payload.manufactures,
-			manufacturesCount: action.payload.count,
+			manufacturesNumbers: action.payload.count,
 		};
 	},
 });
