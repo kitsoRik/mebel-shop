@@ -16,7 +16,7 @@
 		"@types/react-redux": "^7.1.9",
 		"@types/react-router": "^5.1.8",
 		"@types/react-router-dom": "^5.1.5",
-		"antd": "^4.4.2",
+		"antd": "^4.4.3",
 		"axios": "^0.19.2",
 		"cookie-parser": "^1.4.5",
 		"formik": "^2.1.5",

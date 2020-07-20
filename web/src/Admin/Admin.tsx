@@ -57,10 +57,10 @@ const AdminContent = () => (
 			<Menu mode="inline" style={{ height: "100%", borderRight: 0 }}>
 				<Menu.SubMenu key="add" icon={<UserOutlined />} title="Додати">
 					<Menu.Item key="admin">
-						<Link to="/admin/add/sofa">Додати диван</Link>
+						<Link to="/admin/sofas/add">Додати диван</Link>
 					</Menu.Item>
 					<Menu.Item key="manufacture">
-						<Link to="/admin/add/manufacture">
+						<Link to="/admin/manufactures/add">
 							Додати виробника
 						</Link>
 					</Menu.Item>
@@ -71,9 +71,12 @@ const AdminContent = () => (
 					title="Переглянути"
 				>
 					<Menu.Item key="1">
-						<Link to="/admin/views/manufactures">
+						<Link to="/admin/manufactures/">
 							Переглянути виробників
 						</Link>
+					</Menu.Item>
+					<Menu.Item key="2">
+						<Link to="/admin/sofas/">Переглянути дивани</Link>
 					</Menu.Item>
 				</Menu.SubMenu>
 			</Menu>

@@ -8,9 +8,9 @@ import Edit from "./Edit";
 
 interface Props {
 	getActions: (page: number, limit?: number) => any;
-	itemsSelector: (state: AdminState) => any[];
+	itemsSelectorByIds: (ids: number[]) => (state: AdminState) => any[];
 	renderItem: (
-		onEdit: (id: string) => void
+		onEdit: (id: number) => void
 	) => (props: any) => React.ReactNode;
 
 	addForm: JSX.Element;
@@ -19,7 +19,7 @@ interface Props {
 
 const ViewsList = ({
 	getActions,
-	itemsSelector,
+	itemsSelectorByIds,
 	renderItem,
 	addForm,
 	editForm,
@@ -27,7 +27,7 @@ const ViewsList = ({
 	useEffect(() => {
 		getActions!(1);
 	}, []);
-	const items = useAdminSelector(itemsSelector!);
+	const items = useAdminSelector(itemsSelectorByIds([1, 2, 3, 4, 5, 6, 7]));
 
 	const [, setAdd] = useLocationField("add", {
 		type: "boolean",

@@ -25,10 +25,41 @@ export const getManufacturesCreator = createAsyncThunk(
 	}
 );
 
+export const getManufactureCreator = createAsyncThunk(
+	"manufactures/GET_MANUFACTURE",
+	async ({ id }: { id: number }) => {
+		const { manufacture } = await adminApi.manufactures.getManufacture(id);
+
+		return { manufacture };
+	}
+);
+
+export const saveManufactureCreator = createAsyncThunk(
+	"manufactures/SAVE_MANUFACTURE",
+	async ({ id, name }: { id: number; name: string }, { rejectWithValue }) => {
+		const { manufacture } = await adminApi.manufactures.saveManufacture(
+			id,
+			name
+		);
+
+		if (!manufacture) return rejectWithValue({});
+
+		return { manufacture };
+	}
+);
+
 export const addManufacture = (name: string) => {
 	return addManufactureCreator({ name });
 };
 
 export const getManufactures = (page: number, limit: number = 50) => {
 	return getManufacturesCreator({ page, limit });
+};
+
+export const getManufacture = (id: number) => {
+	return getManufactureCreator({ id });
+};
+
+export const saveManufacture = (id: number, name: string) => {
+	return saveManufactureCreator({ id, name });
 };

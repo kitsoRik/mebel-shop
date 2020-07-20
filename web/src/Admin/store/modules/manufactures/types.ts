@@ -1,9 +1,9 @@
 export interface Manufacture {
-	id: string;
+	id: number;
 	name: string;
 }
 
 export interface ManufacturesState {
-	manufactures: Manufacture[];
+	manufactures: { [x: string]: Manufacture };
 	manufacturesNumbers: number;
 }

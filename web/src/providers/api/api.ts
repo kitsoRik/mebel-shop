@@ -14,6 +14,13 @@ export const post = (path: string, data: object = {}) =>
 			throw e.response.data;
 		});
 
+export const put = (path: string, data: object = {}) =>
+	Axios.put(path, data, {})
+		.then(({ data }) => data)
+		.catch((e) => {
+			throw e.response.data;
+		});
+
 export const get = (path: string, data: object = {}) =>
 	Axios.get(`${path}/?${qs.stringify(data as any)}`, data)
 		.then(({ data }) => data)

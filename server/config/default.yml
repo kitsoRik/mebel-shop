@@ -1,0 +1,10 @@
+server:
+    port: 3500
+
+db:
+    type: 'postgres'
+    port: 5432,
+    database: 'mebel-shop'
+
+jwt:
+    expiresIn: 3600

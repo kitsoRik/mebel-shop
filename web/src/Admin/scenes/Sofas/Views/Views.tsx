@@ -1,29 +1,26 @@
 import { Avatar, Button, Form, List, Skeleton } from "antd";
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { compose } from "redux";
 import ViewsList from "../../../components/ViewsList";
-import { AdminState, useAdminSelector } from "../../../store";
-import { getManufactures } from "../../../store/modules/manufactures/actions";
 import { Manufacture } from "../../../store/modules/manufactures/types";
-import AddManufacture from "../../Add/Manufacture";
+import { getSofas } from "../../../store/modules/sofas/actions/getSofas";
+import { selectSofasByIds } from "../../../store/modules/sofas/selectors";
+import AddForm from "./AddForm";
 import EditForm from "./EditForm";
 
 interface Props {
-	getManufactures?: typeof getManufactures;
+	getSofas: typeof getSofas;
 }
 
-const Manufacturers = ({ getManufactures }: Props) => {
-	const itemSelector = ({ manufactures: { manufactures } }: AdminState) =>
-		manufactures;
-
+const Views = ({ getSofas }: Props) => {
 	return (
 		<ViewsList
-			addForm={<AddManufacture />}
+			addForm={<AddForm />}
 			editForm={<EditForm />}
-			getActions={getManufactures!}
-			itemsSelector={itemSelector}
+			getActions={getSofas}
+			itemsSelectorByIds={selectSofasByIds}
 			renderItem={(onEdit) => ({ id, name }: Manufacture) => (
 				<List.Item
 					actions={[
@@ -52,9 +49,9 @@ const Manufacturers = ({ getManufactures }: Props) => {
 	);
 };
 
-const mapDispatchToProps = { getManufactures };
+const mapDispatchToProps = { getSofas };
 
 const enhance = compose(connect(null, mapDispatchToProps));
 
 // @ts-ignore
-export default enhance(Manufacturers);
+export default enhance(Views);
