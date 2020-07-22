@@ -8,27 +8,31 @@ import {
 	SettingOutlined,
 } from "@ant-design/icons";
 import Meta from "antd/lib/card/Meta";
+import { useHistory } from "react-router";
 
 interface Props {
 	product: IProduct;
 }
 
 const Product = ({ product }: Props) => {
+	const history = useHistory();
+
 	return (
 		<Card
-			className={classes.product}
-			style={{ width: 240, padding: 0 }}
+			hoverable
+			style={{ width: 240 }}
 			cover={
-				<img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
+				<img
+					alt="example"
+					src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+				/>
 			}
-			actions={[
-				<SettingOutlined key="setting" />,
-				<EditOutlined key="edit" />,
-				<EllipsisOutlined key="ellipsis" />,
-			]}
+			onClick={() => history.push(`/products/sofas/${product.id}`)}
 		>
-			<div className={classes.image}></div>
-			<span className={classes.price}>1,380 грн</span>
+			<Meta
+				title={<span>{product.name}</span>}
+				description={<div>Main description</div>}
+			/>
 		</Card>
 	);
 };

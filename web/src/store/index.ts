@@ -4,9 +4,11 @@ import {
 	TypedUseSelectorHook,
 	useSelector as useReduxSelector,
 } from "react-redux";
+import sofasReducer from "./modules/sofas/reducer";
 
 const reducer = combineReducers({
 	user: userReducer,
+	sofas: sofasReducer,
 });
 
 const store = configureStore({

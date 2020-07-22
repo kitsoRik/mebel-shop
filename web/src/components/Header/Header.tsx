@@ -5,6 +5,7 @@ import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import SubMenu from "antd/lib/menu/SubMenu";
 import classes from "./Header.module.scss";
 import UserIcon from "../../shared/UserIcon";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 	return (
@@ -24,7 +25,9 @@ const Header = () => {
 					style={{ height: 64 }}
 				>
 					<SubMenu title="Каталог">
-						<Menu.Item>Дивани</Menu.Item>
+						<Menu.Item>
+							<Link to="/products/sofas/">Дивани</Link>
+						</Menu.Item>
 						<Menu.Item>Ліжка</Menu.Item>
 						<Menu.Item>Кухні</Menu.Item>
 					</SubMenu>

@@ -1,21 +1,31 @@
 import { Checkbox, Form, Input, Select } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
+import { connect, useSelector } from "react-redux";
+import { compose } from "redux";
 
 import ProductsPage from "../../components/ProductsPage";
 import ProductsPageContent from "../../components/ProductsPage/ProductsPageContent";
 import ProductsPageContentSearchPanel from "../../components/ProductsPage/ProductsPageContent/ProductsPageContentSearchPanel/ProductsPageContentSearchPanel";
 import ProductsPageHeader from "../../components/ProductsPage/ProductsPageHeader";
-import { IProduct } from "../../models/interfaces/Product";
+import { getSofas } from "../../store/modules/sofas/actions";
+import { selectSofasByIds } from "../../store/modules/sofas/selectors";
 
-const products = new Array(100)
-	.fill(1)
-	.map((value, index): IProduct => ({ id: index.toString() }));
+interface Props {
+	getSofas: typeof getSofas;
+}
 
-const ProductsSofas = () => {
+const ProductsSofas = ({ getSofas }: Props) => {
+	
+	useEffect(() => {
+		getSofas(1, 10);
+	}, []);
+
+	const sofas = useSelector(selectSofasByIds([0, 1, 2]));
+
 	return (
 		<ProductsPage>
 			<ProductsPageHeader />
-			<ProductsPageContent products={products}>
+			<ProductsPageContent products={sofas}>
 				<ProductsPageContentSearchPanel>
 					<Form.Item>
 						<Input />
@@ -33,4 +43,7 @@ const ProductsSofas = () => {
 	);
 };
 
-export default ProductsSofas;
+const enhance = compose(connect(null, { getSofas }));
+
+// @ts-ignore
+export default enhance(ProductsSofas);

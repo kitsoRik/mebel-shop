@@ -15,7 +15,7 @@ export class ManufactureRepository extends Repository<Manufacture> {
 	async getManufactures(
 		offset: number,
 		limit: number,
-	): Promise<[Manufacture[], number]> {
+	): Promise<[	Manufacture[], number]> {
 		const query = this.createQueryBuilder('manufactures')
 			.skip(offset)
 			.limit(limit);

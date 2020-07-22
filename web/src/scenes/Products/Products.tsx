@@ -9,7 +9,11 @@ import { IProduct } from "../../models/interfaces/Product";
 import ProductsSofas from "./ProductsSofas";
 
 const Products = () => {
-	return <div>123</div>;
+	return (
+		<ProductsPage>
+			<ProductsPageHeader />
+		</ProductsPage>
+	);
 };
 
 export default Products;
