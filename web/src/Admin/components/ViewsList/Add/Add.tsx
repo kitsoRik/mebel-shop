@@ -7,21 +7,17 @@ interface Props {
 }
 
 const Add = ({ form }: Props) => {
-	const [add, setAdd] = useLocationField("add");
+	const [add, setAdd] = useLocationField<boolean>("add");
 
 	return (
 		<Modal
 			title="Додати"
-			// @ts-ignore
 			visible={add}
-			// @ts-ignore
 			onCancel={() => setAdd(false)}
 			footer={null}
 		>
 			{React.cloneElement(form, {
-				onAdded: () =>
-					// @ts-ignore
-					setAdd(false)
+				onAdded: () => setAdd(false)
 			})}
 		</Modal>
 	);

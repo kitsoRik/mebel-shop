@@ -15,7 +15,7 @@ interface Props {
 }
 
 const EditForm = ({ saveManufacture, getManufacture }: Props) => {
-	const [id, setEdit] = useLocationField("edit");
+	const [id, setEdit] = useLocationField<string>("edit");
 
 	useEffect(() => {
 		if (!id) return;
@@ -31,7 +31,6 @@ const EditForm = ({ saveManufacture, getManufacture }: Props) => {
 			edit={true}
 			editAction={(name) => saveManufacture(+id, name)}
 			initialValues={{ name: manufacture.name }}
-			// @ts-ignore
 			afterEdited={() => setEdit("")}
 		/>
 	);

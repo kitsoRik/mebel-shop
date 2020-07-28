@@ -16,7 +16,6 @@ const AddForm = ({ addSofa }: Props) => {
 		<SofasForm
 			add={true}
 			addAction={addSofa}
-			// @ts-ignore
 			afterAdded={() => setAdd(false)}
 		/>
 	);

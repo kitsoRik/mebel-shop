@@ -1,21 +1,28 @@
 import { Avatar, Button, Form, List, Skeleton } from "antd";
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { compose } from "redux";
 import ViewsList from "../../../components/ViewsList";
-import { useAdminSelector } from "../../../store";
+import { useAdminSelector, AdminState } from "../../../store";
 import { getManufactures } from "../../../store/modules/manufactures/actions";
 import { selectManufacturesByIds } from "../../../store/modules/manufactures/selectors";
 import { Manufacture } from "../../../store/modules/manufactures/types";
 import Add from "../Add";
 import EditForm from "./EditForm";
+import { useLocationField } from "react-location-query";
 
 interface Props {
 	getManufactures: typeof getManufactures;
 }
 
 const Views = ({ getManufactures }: Props) => {
+	const [limit] = useLocationField("limit", {
+		type: "number",
+		initial: 1,
+		hideIfInitial: true
+	});
+
 	useEffect(() => {
 		getManufactures(1);
 	}, []);
@@ -28,6 +35,7 @@ const Views = ({ getManufactures }: Props) => {
 				selectManufacturesByIds([1, 2, 3, 4, 5, 6, 7])
 			)}
 			page={1}
+			totalItems={3}
 			onChangePage={() => {}}
 			renderItem={(onEdit) => ({ id, name }: Manufacture) => (
 				<List.Item

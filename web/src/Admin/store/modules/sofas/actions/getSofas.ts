@@ -29,7 +29,7 @@ export const getSofasCreator = createAsyncThunk(
 	"sofas/GET_SOFAS",
 	async ({ page, filter, limit }: IGetSofas) => {
 		const { sofas, count } = await adminApi.sofas.getSofas(
-			(page - 1) * page,
+			(page - 1) * limit,
 			filter,
 			limit
 		);

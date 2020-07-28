@@ -4,15 +4,17 @@ import { AddSofaDto } from './dto/add-sofa.dto';
 import { GetSofasDto } from './dto/get-sofas.dto';
 import { SaveSofaDto } from './dto/save-sofa.dto';
 import { NotFoundException } from '@nestjs/common';
+import { off } from 'process';
 
 @EntityRepository(Sofa)
 export class SofaRepository extends Repository<Sofa> {
 	async addSofa(addSofaDto: AddSofaDto, photoNames: string[]): Promise<Sofa> {
-		const { name } = addSofaDto;
+		const { name, manufacture } = addSofaDto;
 
 		const sofa = this.create();
 
 		sofa.name = name;
+		sofa.manufacture = manufacture;
 		sofa.photos = photoNames;
 
 		return await sofa.save();
@@ -27,10 +29,14 @@ export class SofaRepository extends Repository<Sofa> {
 
 		if (filter.name)
 			query.where('name LIKE :name', { name: `%${filter.name}%` });
+		if (filter.manufacture)
+			query.where('manufacture = :manufacture', {
+				manufacture: filter.manufacture,
+			});
 
-		query.skip(offset).limit(limit);
+		query.offset(offset).limit(limit);
 		const result = await query.getManyAndCount();
-
+		console.log(filter, result[1]);
 		return result;
 	}
 

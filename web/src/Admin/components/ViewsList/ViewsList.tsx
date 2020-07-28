@@ -16,6 +16,7 @@ interface Props {
 	items: any[];
 
 	page: number;
+	totalItems: number;
 	onChangePage: (page: number) => void;
 }
 
@@ -27,6 +28,7 @@ const ViewsList = ({
 	searchForm,
 
 	page,
+	totalItems,
 	onChangePage
 }: Props) => {
 	const [, setAdd] = useLocationField("add", {
@@ -40,6 +42,8 @@ const ViewsList = ({
 		initial: "",
 		hideIfInitial: true
 	});
+
+	const [limit] = useLocationField<number>("limit");
 
 	return (
 		<>
@@ -55,7 +59,12 @@ const ViewsList = ({
 					}
 					renderItem={renderItem((id) => setEdit(id.toString()))}
 				/>
-				<Pagination current={page} total={50} onChange={onChangePage} />
+				<Pagination
+					current={page}
+					total={totalItems}
+					pageSize={limit}
+					onChange={onChangePage}
+				/>
 			</div>
 			<Add form={addForm} />
 			<Edit form={editForm} />

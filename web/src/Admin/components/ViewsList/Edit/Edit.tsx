@@ -7,14 +7,12 @@ interface Props {
 }
 
 const Edit = ({ form }: Props) => {
-	const [edit, setEdit] = useLocationField("edit");
+	const [edit, setEdit] = useLocationField<string>("edit");
 
 	return (
 		<Modal
 			title="Редагувати"
-			// @ts-ignore
 			visible={edit !== ""}
-			// @ts-ignore
 			onCancel={() => setEdit("")}
 			footer={null}
 		>

@@ -14,5 +14,5 @@ export class GetSofasDto {
 
 	@Validate(s => !!JSON.parse(s))
 	@Transform(JSON.parse)
-	filter: { name?: string };
+	filter: { name?: string; manufacture?: number };
 }

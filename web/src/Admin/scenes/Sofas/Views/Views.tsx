@@ -11,7 +11,6 @@ import EditForm from "./EditForm";
 import { baseUrl } from "../../../../providers/api/api";
 import { Sofa } from "../../../store/modules/sofas/types";
 import { useAdminSelector } from "../../../store";
-import ManufacturesSelect from "../../../../shared/ManufacturesSelect";
 import FilterForm from "./FilterForm";
 import { useLocationField } from "react-location-query";
 
@@ -20,15 +19,21 @@ interface Props {
 }
 
 const Views = ({ getSofas }: Props) => {
-	const items = useAdminSelector(selectSofasByPage(1));
-
 	const [page, setPage] = useLocationField("page", 1);
-	const [name] = useLocationField("name");
-	const [manufacture] = useLocationField("manufacture");
+	const [limit] = useLocationField("limit", {
+		type: "number",
+		initial: 1,
+		hideIfInitial: true
+	});
+	const [name] = useLocationField<string>("name");
+	const [manufacture] = useLocationField<number>("manufacture");
+
+	const items = useAdminSelector(selectSofasByPage(page));
+	const totalItems = useAdminSelector((s) => s.sofas.sofasNumbers);
 
 	useEffect(() => {
-		// @ts-ignore
-		getSofas(page, { name, manufacture });
+		if (name === undefined) return;
+		getSofas(page, { name, manufacture }, limit);
 	}, [page, name, manufacture]);
 
 	return (
@@ -38,6 +43,7 @@ const Views = ({ getSofas }: Props) => {
 			searchForm={<FilterForm />}
 			items={items}
 			page={page}
+			totalItems={totalItems}
 			onChangePage={setPage}
 			renderItem={(onEdit) => ({ id, name, photos }: Sofa) => (
 				<List.Item
