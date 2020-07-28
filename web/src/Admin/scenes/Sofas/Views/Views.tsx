@@ -9,10 +9,10 @@ import { selectSofasByPage } from "../../../store/modules/sofas/selectors";
 import AddForm from "./AddForm";
 import EditForm from "./EditForm";
 import { baseUrl } from "../../../../providers/api/api";
-import { Sofa } from "../../../store/modules/sofas/types";
 import { useAdminSelector } from "../../../store";
 import FilterForm from "./FilterForm";
 import { useLocationField } from "react-location-query";
+import { Sofa } from "@mebel-shop/data-objects";
 
 interface Props {
 	getSofas: typeof getSofas;
@@ -22,7 +22,7 @@ const Views = ({ getSofas }: Props) => {
 	const [page, setPage] = useLocationField("page", 1);
 	const [limit] = useLocationField("limit", {
 		type: "number",
-		initial: 1,
+		initial: 20,
 		hideIfInitial: true
 	});
 	const [name] = useLocationField<string>("name");
@@ -45,7 +45,13 @@ const Views = ({ getSofas }: Props) => {
 			page={page}
 			totalItems={totalItems}
 			onChangePage={setPage}
-			renderItem={(onEdit) => ({ id, name, photos }: Sofa) => (
+			// @ts-ignore
+			renderItem={(onEdit) => ({
+				id,
+				name,
+				description,
+				photos
+			}: Sofa) => (
 				<List.Item
 					actions={[
 						<Button
@@ -65,6 +71,7 @@ const Views = ({ getSofas }: Props) => {
 								/>
 							)
 						}
+						description={description}
 						title={
 							<Link to={`/admin/views/manufactures/${id}`}>
 								{name}

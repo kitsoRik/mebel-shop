@@ -2,11 +2,6 @@ import React, { useEffect } from "react";
 import { useLocationField } from "react-location-query";
 import { connect, useSelector } from "react-redux";
 import { compose } from "redux";
-import {
-	getManufacture,
-	saveManufacture
-} from "../../../../store/modules/manufactures/actions";
-import { selectManufactureById } from "../../../../store/modules/manufactures/selectors";
 import { getSofa } from "../../../../store/modules/sofas/actions/getSofa";
 import { saveSofa } from "../../../../store/modules/sofas/actions/saveSofa";
 import { selectSofaById } from "../../../../store/modules/sofas/selectors";
@@ -32,7 +27,8 @@ const EditForm = ({ saveSofa, getSofa }: Props) => {
 	return (
 		<SofasForm
 			edit={true}
-			editAction={(...args) => saveSofa(+id, ...args)}
+			editAction={saveSofa}
+			// @ts-ignore
 			initialValues={{ ...sofa, photos: sofa.photos }}
 			afterEdited={() => setEdit("")}
 		/>

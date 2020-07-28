@@ -4,7 +4,8 @@ import { SofasState } from "./types";
 
 const sofasState: SofasState = {
 	sofas: {},
-	sofasNumbers: 0,
+	pages: {},
+	sofasNumbers: 0
 };
 
 const sofasReducer = createReducer(sofasState, {
@@ -12,15 +13,17 @@ const sofasReducer = createReducer(sofasState, {
 		state,
 		action: GetSofasFullfiledAction
 	) => {
+		const { page } = action.meta.arg;
 		const { sofas } = action.payload;
 		return {
 			...state,
+			pages: { ...state.pages, [page]: sofas.map((s) => s.id) },
 			sofas: {
 				...state.sofas,
-				...sofas.reduce((p, sofa) => ({ ...p, [sofa.id]: sofa }), {}),
-			},
+				...sofas.reduce((p, sofa) => ({ ...p, [sofa.id]: sofa }), {})
+			}
 		};
-	},
+	}
 });
 
 export default sofasReducer;

@@ -1,44 +1,43 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import adminApi from "../../../../providers/api";
+import { Sofa } from "@mebel-shop/data-objects";
 
 export const saveSofaCreator = createAsyncThunk(
-	"sofas/SAVE_SOFA",
+	"admin/sofas/SAVE_SOFA",
 	async (
 		{
-			id,
-			manufacture,
-			name,
+			sofa,
 			photos,
 			removedPhotos
 		}: {
-			id: number;
-			manufacture: number;
-			name: string;
+			sofa: Sofa;
 			photos: (File | string)[];
 			removedPhotos: string[];
 		},
 		{ rejectWithValue }
 	) => {
-		const { sofa } = await adminApi.sofas.saveSofa(
-			id,
-			manufacture,
-			name,
+		const { sofa: newSofa } = await adminApi.sofas.saveSofa(
+			sofa.id,
+			// @ts-ignore
+			sofa.manufactureId,
+			sofa.name,
+			sofa.price,
+			sofa.description,
+			sofa.characteristics,
 			photos,
 			removedPhotos
 		);
 
-		if (!sofa) return rejectWithValue({});
+		if (!newSofa) return rejectWithValue({});
 
-		return { sofa };
+		return { sofa: newSofa };
 	}
 );
 
 export const saveSofa = (
-	id: number,
-	manufacture: number,
-	name: string,
+	sofa: Sofa,
 	photos: (File | string)[],
 	removedPhotos: string[]
 ) => {
-	return saveSofaCreator({ id, manufacture, name, photos, removedPhotos });
+	return saveSofaCreator({ sofa, photos, removedPhotos });
 };

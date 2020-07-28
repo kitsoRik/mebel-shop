@@ -6,11 +6,12 @@ import { IProduct } from "../../../models/interfaces/Product";
 
 interface Props {
 	products: IProduct[];
+	photosBaseUrl: string;
 
 	children: JSX.Element | JSX.Element[];
 }
 
-const ProductsPageContent = ({ products, children }: Props) => {
+const ProductsPageContent = ({ products, children, photosBaseUrl }: Props) => {
 	const elements = Array.isArray(children) ? children : [children];
 
 	const searchPanel = elements.filter(
@@ -20,7 +21,7 @@ const ProductsPageContent = ({ products, children }: Props) => {
 	return (
 		<div className={classes.content}>
 			{searchPanel}
-			<ProductsContainer products={products} />
+			<ProductsContainer photosBaseUrl={photosBaseUrl} products={products} />
 		</div>
 	);
 };

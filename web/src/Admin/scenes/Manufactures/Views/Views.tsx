@@ -29,7 +29,7 @@ const Views = ({ getManufactures }: Props) => {
 
 	return (
 		<ViewsList
-			addForm={<Add onAdded={() => {}} />}
+			addForm={<Add />}
 			editForm={<EditForm />}
 			items={useAdminSelector(
 				selectManufacturesByIds([1, 2, 3, 4, 5, 6, 7])

@@ -5,13 +5,17 @@ import Product from "../../../../shared/Product";
 
 interface Props {
 	products: IProduct[];
+	photosBaseUrl: string;
 }
 
-const ProductsContainer = ({ products = [] }: Props) => {
+const ProductsContainer = ({ products = [], photosBaseUrl }: Props) => {
 	return (
 		<div className={classes.container}>
 			{products.map((product) => (
-				<Product product={product} />
+				<Product
+					product={product}
+					photoUrl={`${photosBaseUrl}${product.photos[0]}`}
+				/>
 			))}
 		</div>
 	);

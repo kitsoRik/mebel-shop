@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import adminApi from "../../../providers/api";
 
 export const addManufactureCreator = createAsyncThunk(
-	"manufactures/ADD_MANUFACTURE",
+	"admin/manufactures/ADD_MANUFACTURE",
 	async ({ name }: { name: string }) => {
 		const manufacture = await adminApi.manufactures.addManufacture(name);
 
@@ -11,11 +11,11 @@ export const addManufactureCreator = createAsyncThunk(
 );
 
 export const getManufacturesCreator = createAsyncThunk(
-	"manufactures/GET_MANUFACTURES",
+	"admin/manufactures/GET_MANUFACTURES",
 	async ({ page, limit }: { page: number; limit: number }) => {
 		const {
 			manufactures,
-			count,
+			count
 		} = await adminApi.manufactures.getManufactures(
 			(page - 1) * limit,
 			limit
@@ -26,7 +26,7 @@ export const getManufacturesCreator = createAsyncThunk(
 );
 
 export const getManufactureCreator = createAsyncThunk(
-	"manufactures/GET_MANUFACTURE",
+	"admin/manufactures/GET_MANUFACTURE",
 	async ({ id }: { id: number }) => {
 		const { manufacture } = await adminApi.manufactures.getManufacture(id);
 
@@ -35,7 +35,7 @@ export const getManufactureCreator = createAsyncThunk(
 );
 
 export const saveManufactureCreator = createAsyncThunk(
-	"manufactures/SAVE_MANUFACTURE",
+	"admin/manufactures/SAVE_MANUFACTURE",
 	async ({ id, name }: { id: number; name: string }, { rejectWithValue }) => {
 		const { manufacture } = await adminApi.manufactures.saveManufacture(
 			id,

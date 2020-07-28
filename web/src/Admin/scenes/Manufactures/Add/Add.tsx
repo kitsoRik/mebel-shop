@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, notification } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import React from "react";
 import { connect } from "react-redux";
@@ -8,15 +8,19 @@ import ManufacturesForm from "../ManufacturesForm";
 
 interface Props {
 	addManufacture?: typeof addManufacture;
-	onAdded: () => void;
 }
 
-const Add = ({ addManufacture, onAdded }: Props) => {
+const Add = ({ addManufacture }: Props) => {
 	return (
 		<ManufacturesForm
 			add={true}
 			addAction={addManufacture!}
-			afterAdded={onAdded}
+			afterAdded={() =>
+				notification.success({
+					placement: "bottomLeft",
+					message: "Виробник успішно доданий"
+				})
+			}
 		/>
 	);
 };

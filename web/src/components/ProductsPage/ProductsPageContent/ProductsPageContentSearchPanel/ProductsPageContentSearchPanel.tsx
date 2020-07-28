@@ -4,14 +4,20 @@ import { Button, Form } from "antd";
 
 interface Props {
 	children: JSX.Element | JSX.Element[];
+
+	onSearch: () => void;
 }
 
-const ProductsPageContentSearchPanel = ({ children }: Props) => {
+const ProductsPageContentSearchPanel = ({ children, onSearch }: Props) => {
 	return (
 		<Form className={classes.form}>
 			{children}
 			<Form.Item>
-				<Button type="primary" style={{ width: "100%" }}>
+				<Button
+					type="primary"
+					style={{ width: "100%" }}
+					onClick={onSearch}
+				>
 					Знайти
 				</Button>
 			</Form.Item>

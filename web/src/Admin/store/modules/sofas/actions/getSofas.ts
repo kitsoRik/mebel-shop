@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import adminApi from "../../../../providers/api";
-import { Sofa } from "../types";
+import { Sofa } from "@mebel-shop/data-objects";
 
 export type SofasFilter = {
 	name?: string;
@@ -26,7 +26,7 @@ export interface GetSofasFullfiledAction {
 }
 
 export const getSofasCreator = createAsyncThunk(
-	"sofas/GET_SOFAS",
+	"admin/sofas/GET_SOFAS",
 	async ({ page, filter, limit }: IGetSofas) => {
 		const { sofas, count } = await adminApi.sofas.getSofas(
 			(page - 1) * limit,

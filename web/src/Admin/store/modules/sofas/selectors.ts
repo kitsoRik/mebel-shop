@@ -1,5 +1,5 @@
 import { AdminState } from "../..";
-import { Sofa } from "./types";
+import { Sofa } from "@mebel-shop/data-objects";
 
 export const selectSofaById = (id: number) => ({
 	sofas: { sofas }

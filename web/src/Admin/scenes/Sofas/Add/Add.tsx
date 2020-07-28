@@ -4,16 +4,25 @@ import { compose } from "redux";
 import AddPage from "../../../components/AddPage";
 import { addSofa } from "../../../store/modules/sofas/actions/addSofa";
 import SofasForm from "../SofasForm";
+import { notification } from "antd";
 
 interface Props {
 	addSofa: typeof addSofa;
-	onAdded: () => void;
 }
 
-const Add = ({ addSofa, onAdded }: Props) => {
+const Add = ({ addSofa }: Props) => {
 	return (
 		<AddPage title="Додавання дивану">
-			<SofasForm add={true} addAction={addSofa} afterAdded={onAdded} />
+			<SofasForm
+				add={true}
+				addAction={addSofa}
+				afterAdded={() =>
+					notification.success({
+						message: "Диван успішно доданий",
+						placement: "bottomLeft"
+					})
+				}
+			/>
 		</AddPage>
 	);
 };

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import adminApi from "../../../../providers/api";
-import { Sofa } from "../types";
+import { Sofa } from "@mebel-shop/data-objects";
 
 export interface GetSofaFullfiledAction {
 	payload: {
@@ -9,7 +9,7 @@ export interface GetSofaFullfiledAction {
 }
 
 export const getSofaCreator = createAsyncThunk(
-	"sofa/GET_SOFA",
+	"admin/sofa/GET_SOFA",
 	async ({ id }: { id: number }) => {
 		const { sofa } = await adminApi.sofas.getSofa(id);
 

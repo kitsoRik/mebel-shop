@@ -1,10 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import adminApi from "../../../../providers/api";
-import { Sofa } from "../types";
+import { Sofa } from "@mebel-shop/data-objects";
 
 interface IAddSofa {
-	manufactureId: number;
-	name: string;
+	sofa: Sofa;
 	photos: File[];
 }
 
@@ -16,22 +15,21 @@ export interface AddSofaFullfiledAction {
 }
 
 export const addSofaCreator = createAsyncThunk(
-	"sofas/ADD_SOFA",
-	async ({ manufactureId, name, photos }: IAddSofa) => {
-		console.log(photos);
-		const { sofa } = await adminApi.sofas.addSofa(
-			manufactureId,
-			name,
+	"admin/sofas/ADD_SOFA",
+	async ({ sofa, photos }: IAddSofa) => {
+		const { sofa: newSofa } = await adminApi.sofas.addSofa(
+			// @ts-ignore
+			sofa.manufactureId,
+			sofa.name,
+			sofa.price,
+			sofa.description,
+			sofa.characteristics,
 			photos
 		);
-		return { sofa };
+		return { sofa: newSofa };
 	}
 );
 
-export const addSofa = (
-	manufactureId: number,
-	name: string,
-	photos: File[]
-) => {
-	return addSofaCreator({ manufactureId, name, photos });
+export const addSofa = (sofa: Sofa, photos: File[]) => {
+	return addSofaCreator({ sofa, photos });
 };

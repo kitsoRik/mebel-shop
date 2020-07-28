@@ -4,7 +4,8 @@ import { getSofaCreator } from "./actions/getSofa";
 import { getSofasCreator, GetSofasFullfiledAction } from "./actions/getSofas";
 import { GetSofaFullfiledAction } from "./actions/getSofa";
 import { saveSofaCreator } from "./actions/saveSofa";
-import { Sofa, SofasState } from "./types";
+import { SofasState } from "./types";
+import { Sofa } from "@mebel-shop/data-objects";
 
 const initialState: SofasState = {
 	sofas: {},

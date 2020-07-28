@@ -1,9 +1,4 @@
-export interface Sofa {
-	id: number;
-	name: string;
-	manufacture: number;
-	photos: string[];
-}
+import { Sofa } from "@mebel-shop/data-objects";
 
 export interface SofasState {
 	sofas: { [x: string]: Sofa };
