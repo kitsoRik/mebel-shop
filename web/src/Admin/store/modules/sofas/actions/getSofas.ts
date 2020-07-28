@@ -2,23 +2,35 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import adminApi from "../../../../providers/api";
 import { Sofa } from "../types";
 
+export type SofasFilter = {
+	name?: string;
+	manufacture?: number;
+};
+
 interface IGetSofas {
 	page: number;
+	filter: SofasFilter;
 	limit: number;
 }
 
 export interface GetSofasFullfiledAction {
+	meta: {
+		arg: {
+			page: number;
+		};
+	};
 	payload: {
-		sofa: Sofa;
-		sofasNumbers: number;
+		sofas: Sofa[];
+		count: number;
 	};
 }
 
 export const getSofasCreator = createAsyncThunk(
 	"sofas/GET_SOFAS",
-	async ({ page, limit }: IGetSofas) => {
+	async ({ page, filter, limit }: IGetSofas) => {
 		const { sofas, count } = await adminApi.sofas.getSofas(
 			(page - 1) * page,
+			filter,
 			limit
 		);
 
@@ -26,6 +38,10 @@ export const getSofasCreator = createAsyncThunk(
 	}
 );
 
-export const getSofas = (page: number, limit: number = 10) => {
-	return getSofasCreator({ page, limit });
+export const getSofas = (
+	page: number,
+	filter: SofasFilter = {},
+	limit: number = 10
+) => {
+	return getSofasCreator({ page, filter, limit });
 };

@@ -7,4 +7,10 @@ export class Sofa extends BaseEntity {
 
 	@Column({})
 	name: string;
+
+	@Column({ type: 'int', default: -1 })
+	manufacture: number;
+
+	@Column({ type: 'text', array: true })
+	photos: string[];
 }

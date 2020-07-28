@@ -1,14 +1,15 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { addSofaCreator, AddSofaFullfiledAction } from "./actions/addSofa";
 import { getSofaCreator } from "./actions/getSofa";
-import { getSofasCreator } from "./actions/getSofas";
+import { getSofasCreator, GetSofasFullfiledAction } from "./actions/getSofas";
 import { GetSofaFullfiledAction } from "./actions/getSofa";
 import { saveSofaCreator } from "./actions/saveSofa";
 import { Sofa, SofasState } from "./types";
 
 const initialState: SofasState = {
 	sofas: {},
-	sofasNumbers: 0,
+	pages: {},
+	sofasNumbers: 0
 };
 
 export const sofasReducer = createReducer(initialState, {
@@ -21,19 +22,25 @@ export const sofasReducer = createReducer(initialState, {
 			...state,
 			sofas: {
 				...state.sofas,
-				[sofa.id]: sofa,
+				[sofa.id]: sofa
 			},
-			sofasNumbers: sofasNumbers + 1,
+			sofasNumbers: sofasNumbers + 1
 		};
 	},
-	[getSofasCreator.fulfilled.type]: (state, action) => {
+	[getSofasCreator.fulfilled.type]: (
+		state,
+		action: GetSofasFullfiledAction
+	) => {
+		const { page } = action.meta.arg;
+		const { sofas } = action.payload;
 		return {
 			...state,
-			sofas: action.payload.sofas.reduce(
+			pages: { ...state.pages, [page]: sofas.map((s: any) => s.id) },
+			sofas: sofas.reduce(
 				(p: object, c: Sofa) => ({ ...p, [c.id]: c }),
 				{}
 			),
-			sofasNumbers: action.payload.count,
+			sofasNumbers: action.payload.count
 		};
 	},
 	[getSofaCreator.fulfilled.type]: (
@@ -41,12 +48,13 @@ export const sofasReducer = createReducer(initialState, {
 		action: GetSofaFullfiledAction
 	) => {
 		const { sofa } = action.payload;
+
 		return {
 			...state,
 			sofas: {
 				...state.sofas,
-				[sofa.id]: sofa,
-			},
+				[sofa.id]: sofa
+			}
 		};
 	},
 	[saveSofaCreator.fulfilled.type]: (state, action) => {
@@ -56,8 +64,8 @@ export const sofasReducer = createReducer(initialState, {
 			...state,
 			sofas: {
 				...state.sofas,
-				[sofa.id]: sofa,
-			},
+				[sofa.id]: sofa
+			}
 		};
-	},
+	}
 });

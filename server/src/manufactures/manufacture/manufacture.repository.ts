@@ -15,7 +15,7 @@ export class ManufactureRepository extends Repository<Manufacture> {
 	async getManufactures(
 		offset: number,
 		limit: number,
-	): Promise<[	Manufacture[], number]> {
+	): Promise<[Manufacture[], number]> {
 		const query = this.createQueryBuilder('manufactures')
 			.skip(offset)
 			.limit(limit);
@@ -30,7 +30,7 @@ export class ManufactureRepository extends Repository<Manufacture> {
 		limit: number,
 	): Promise<Manufacture[]> {
 		const query = this.createQueryBuilder('manufactures')
-			.where(`name='${name}'`)
+			.where(`name LIKE :name`, { name: `%${name}%` })
 			.limit(limit);
 		const result = await query.getMany();
 

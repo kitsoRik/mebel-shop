@@ -12,11 +12,17 @@ const Add = ({ form }: Props) => {
 	return (
 		<Modal
 			title="Додати"
-			visible={add as boolean}
+			// @ts-ignore
+			visible={add}
+			// @ts-ignore
 			onCancel={() => setAdd(false)}
 			footer={null}
 		>
-			{React.cloneElement(form, { onAdded: () => setAdd(false) })}
+			{React.cloneElement(form, {
+				onAdded: () =>
+					// @ts-ignore
+					setAdd(false)
+			})}
 		</Modal>
 	);
 };

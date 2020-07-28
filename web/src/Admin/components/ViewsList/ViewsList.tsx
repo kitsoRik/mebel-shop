@@ -1,59 +1,62 @@
-import { Avatar, Button, List, Skeleton } from "antd";
-import React, { useEffect } from "react";
-import { AdminState, useAdminSelector } from "../../store";
+import { Button, List, Pagination } from "antd";
+import React from "react";
 import { useLocationField } from "react-location-query";
 import classes from "./ViewsList.module.scss";
 import Add from "./Add";
 import Edit from "./Edit";
 
 interface Props {
-	getActions: (page: number, limit?: number) => any;
-	itemsSelectorByIds: (ids: number[]) => (state: AdminState) => any[];
 	renderItem: (
 		onEdit: (id: number) => void
 	) => (props: any) => React.ReactNode;
 
 	addForm: JSX.Element;
 	editForm: JSX.Element;
+	searchForm?: JSX.Element;
+	items: any[];
+
+	page: number;
+	onChangePage: (page: number) => void;
 }
 
 const ViewsList = ({
-	getActions,
-	itemsSelectorByIds,
+	items,
 	renderItem,
 	addForm,
 	editForm,
-}: Props) => {
-	useEffect(() => {
-		getActions!(1);
-	}, []);
-	const items = useAdminSelector(itemsSelectorByIds([1, 2, 3, 4, 5, 6, 7]));
+	searchForm,
 
+	page,
+	onChangePage
+}: Props) => {
 	const [, setAdd] = useLocationField("add", {
 		type: "boolean",
 		initial: false,
-		hideIfInitial: true,
+		hideIfInitial: true
 	});
 
 	const [, setEdit] = useLocationField("edit", {
 		type: "string",
 		initial: "",
-		hideIfInitial: true,
+		hideIfInitial: true
 	});
 
 	return (
 		<>
-			<List
-				style={{ width: "100%", height: "100%", background: "white" }}
-				loading={false}
-				dataSource={items}
-				loadMore={
-					<div className={classes.addWrapper}>
-						<Button onClick={() => setAdd(true)}>Додати</Button>
-					</div>
-				}
-				renderItem={renderItem((id) => setEdit(id))}
-			/>
+			<div className={classes.view}>
+				{searchForm}
+				<List
+					className={classes.list}
+					dataSource={items}
+					loadMore={
+						<div className={classes.addWrapper}>
+							<Button onClick={() => setAdd(true)}>Додати</Button>
+						</div>
+					}
+					renderItem={renderItem((id) => setEdit(id.toString()))}
+				/>
+				<Pagination current={page} total={50} onChange={onChangePage} />
+			</div>
 			<Add form={addForm} />
 			<Edit form={editForm} />
 		</>

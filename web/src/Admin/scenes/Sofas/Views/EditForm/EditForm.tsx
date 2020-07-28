@@ -4,7 +4,7 @@ import { connect, useSelector } from "react-redux";
 import { compose } from "redux";
 import {
 	getManufacture,
-	saveManufacture,
+	saveManufacture
 } from "../../../../store/modules/manufactures/actions";
 import { selectManufactureById } from "../../../../store/modules/manufactures/selectors";
 import { getSofas } from "../../../../store/modules/sofas/actions/getSofas";
@@ -18,22 +18,23 @@ interface Props {
 }
 
 const EditForm = ({ saveSofa, getSofas }: Props) => {
-	const [id, setEdit] = useLocationField<string>("edit");
+	const [id, setEdit] = useLocationField("edit");
 
 	useEffect(() => {
 		if (!id) return;
 		getSofas(+id);
 	}, [id]);
 
-	const manufacture = useSelector(selectSofaById(+id));
+	const sofa = useSelector(selectSofaById(+id));
 
-	if (!manufacture) return null;
+	if (!sofa) return null;
 
 	return (
 		<SofasForm
 			edit={true}
-			editAction={(name) => saveSofa(+id, name)}
-			initialValues={{ name: manufacture.name }}
+			editAction={(...args) => saveSofa(+id, ...args)}
+			initialValues={{ ...sofa, photos: sofa.photos }}
+			// @ts-ignore
 			afterEdited={() => setEdit("")}
 		/>
 	);

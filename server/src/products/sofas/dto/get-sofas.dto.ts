@@ -1,5 +1,5 @@
 import { Transform } from 'class-transformer';
-import { IsNumber, IsPositive, Validate } from 'class-validator';
+import { IsNumber, IsPositive, Validate, IsJSON } from 'class-validator';
 
 export class GetSofasDto {
 	@Transform(v => +v)
@@ -11,4 +11,8 @@ export class GetSofasDto {
 	@IsNumber()
 	@IsPositive()
 	limit: number;
+
+	@Validate(s => !!JSON.parse(s))
+	@Transform(JSON.parse)
+	filter: { name?: string };
 }

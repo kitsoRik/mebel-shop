@@ -3,8 +3,29 @@ import adminApi from "../../../../providers/api";
 
 export const saveSofaCreator = createAsyncThunk(
 	"sofas/SAVE_SOFA",
-	async ({ id, name }: { id: number; name: string }, { rejectWithValue }) => {
-		const { sofa } = await adminApi.sofas.saveSofa(id, name);
+	async (
+		{
+			id,
+			manufacture,
+			name,
+			photos,
+			removedPhotos
+		}: {
+			id: number;
+			manufacture: number;
+			name: string;
+			photos: (File | string)[];
+			removedPhotos: string[];
+		},
+		{ rejectWithValue }
+	) => {
+		const { sofa } = await adminApi.sofas.saveSofa(
+			id,
+			manufacture,
+			name,
+			photos,
+			removedPhotos
+		);
 
 		if (!sofa) return rejectWithValue({});
 
@@ -12,6 +33,12 @@ export const saveSofaCreator = createAsyncThunk(
 	}
 );
 
-export const saveSofa = (id: number, name: string) => {
-	return saveSofaCreator({ id, name });
+export const saveSofa = (
+	id: number,
+	manufacture: number,
+	name: string,
+	photos: (File | string)[],
+	removedPhotos: string[]
+) => {
+	return saveSofaCreator({ id, manufacture, name, photos, removedPhotos });
 };

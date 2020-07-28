@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { compose } from "redux";
 import ViewsList from "../../../components/ViewsList";
-import { AdminState, useAdminSelector } from "../../../store";
+import { useAdminSelector } from "../../../store";
 import { getManufactures } from "../../../store/modules/manufactures/actions";
 import { selectManufacturesByIds } from "../../../store/modules/manufactures/selectors";
 import { Manufacture } from "../../../store/modules/manufactures/types";
@@ -12,16 +12,23 @@ import Add from "../Add";
 import EditForm from "./EditForm";
 
 interface Props {
-	getManufactures?: typeof getManufactures;
+	getManufactures: typeof getManufactures;
 }
 
 const Views = ({ getManufactures }: Props) => {
+	useEffect(() => {
+		getManufactures(1);
+	}, []);
+
 	return (
 		<ViewsList
 			addForm={<Add onAdded={() => {}} />}
 			editForm={<EditForm />}
-			getActions={getManufactures!}
-			itemsSelectorByIds={selectManufacturesByIds}
+			items={useAdminSelector(
+				selectManufacturesByIds([1, 2, 3, 4, 5, 6, 7])
+			)}
+			page={1}
+			onChangePage={() => {}}
 			renderItem={(onEdit) => ({ id, name }: Manufacture) => (
 				<List.Item
 					actions={[
@@ -31,7 +38,7 @@ const Views = ({ getManufactures }: Props) => {
 						>
 							Редагувати
 						</Button>,
-						<Button key="list-loadmore-more">Детальніше</Button>,
+						<Button key="list-loadmore-more">Детальніше</Button>
 					]}
 				>
 					<List.Item.Meta
