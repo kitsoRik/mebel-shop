@@ -42,7 +42,7 @@ const ProductsSofas = ({ getSofas }: Props) => {
 	});
 
 	useEffect(() => {
-		getSofas(page, { minMaxWeight, maxMaxWeight }, limit);
+		handleSearch();
 	}, []);
 
 	const handleSearch = () => {

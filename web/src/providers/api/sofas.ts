@@ -6,3 +6,5 @@ export const getSofas = (
 	filter: GetSofasFilter,
 	limit: number
 ) => get("/sofas", { offset, filter: JSON.stringify(filter), limit });
+
+export const getSofa = (id: number) => get(`/sofas/${id}`);

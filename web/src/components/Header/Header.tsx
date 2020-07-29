@@ -11,9 +11,9 @@ const Header = () => {
 	return (
 		<Layout.Header
 			style={{
-				height: 64 + 22,
+				height: 64,
 				background: "white",
-				padding: 0,
+				padding: 0
 			}}
 			color="white"
 		>
@@ -35,16 +35,6 @@ const Header = () => {
 				</Menu>
 				<UserIcon />
 			</div>
-			<Breadcrumb style={{ padding: "0 10px" }}>
-				<Breadcrumb.Item href="">
-					<HomeOutlined />
-				</Breadcrumb.Item>
-				<Breadcrumb.Item href="">
-					<UserOutlined />
-					<span>Application List</span>
-				</Breadcrumb.Item>
-				<Breadcrumb.Item>Application</Breadcrumb.Item>
-			</Breadcrumb>
 		</Layout.Header>
 	);
 };

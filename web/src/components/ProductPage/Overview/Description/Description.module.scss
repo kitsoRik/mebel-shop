@@ -1,0 +1,19 @@
+.description {
+	width: 550px;
+
+	border: 2px solid black;
+}
+
+.text {
+	padding: 20px;
+	font-size: 16px;
+}
+
+.price {
+	font-size: 20px;
+}
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+}
