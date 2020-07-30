@@ -1,0 +1,28 @@
+.item {
+	height: 100%;
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.title {
+	margin: 0;
+	padding: 4px;
+
+	height: min-content;
+
+	position: absolute;
+
+	top: 5px;
+	left: 5px;
+
+	background-color: white;
+
+	line-height: normal;
+}
+
+.img {
+	width: 100%;
+}
