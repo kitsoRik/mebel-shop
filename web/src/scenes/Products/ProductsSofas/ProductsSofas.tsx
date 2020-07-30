@@ -41,19 +41,82 @@ const ProductsSofas = ({ getSofas }: Props) => {
 		hideIfInitial: true
 	});
 
+	const [minWidth] = useLocationField("minWidth", {
+		type: "number",
+		initial: 0,
+		hideIfInitial: true
+	});
+
+	const [maxWidth] = useLocationField("maxWidth", {
+		type: "number",
+		initial: 0,
+		hideIfInitial: true
+	});
+
+	const [minHeight] = useLocationField("minHeight", {
+		type: "number",
+		initial: 0,
+		hideIfInitial: true
+	});
+
+	const [maxHeight] = useLocationField("maxHeight", {
+		type: "number",
+		initial: 0,
+		hideIfInitial: true
+	});
+
+	const [minDepth] = useLocationField("minDepth", {
+		type: "number",
+		initial: 0,
+		hideIfInitial: true
+	});
+
+	const [maxDepth] = useLocationField("maxDepth", {
+		type: "number",
+		initial: 0,
+		hideIfInitial: true
+	});
+
+	const [minWeight] = useLocationField("minWeight", {
+		type: "number",
+		initial: 0,
+		hideIfInitial: true
+	});
+
+	const [maxWeight] = useLocationField("maxWeight", {
+		type: "number",
+		initial: 0,
+		hideIfInitial: true
+	});
+
 	useEffect(() => {
 		handleSearch();
 	}, []);
 
 	const handleSearch = () => {
-		getSofas(page, { minMaxWeight, maxMaxWeight }, limit);
+		getSofas(
+			page,
+			{
+				minMaxWeight,
+				maxMaxWeight,
+				maxDepth,
+				maxHeight,
+				maxWeight,
+				maxWidth,
+				minDepth,
+				minHeight,
+				minWeight,
+				minWidth
+			},
+			limit
+		);
 	};
 
 	const sofas = useSelector(selectSofasByPage(page));
 
 	return (
 		<ProductsPage>
-			<ProductsPageHeader />
+			<ProductsPageHeader title="Дивани" />
 			<ProductsPageContent
 				photosBaseUrl={`${baseUrl}/static/sofas/photos/`}
 				products={sofas}

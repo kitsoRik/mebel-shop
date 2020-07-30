@@ -1,8 +1,6 @@
 import { Layout } from "antd";
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { useLocation } from "react-router";
-import { compose } from "redux";
 import AdminRoot from "./Admin/Root";
 import classes from "./App.module.scss";
 import Footer from "./components/Footer";
@@ -19,7 +17,9 @@ function App({ getUserData }: Props) {
 		<Layout className={classes.App}>
 			<Header />
 			<Layout.Content className={classes.content}>
-				<Routes />
+				<div className={classes.inside}>
+					<Routes />
+				</div>
 			</Layout.Content>
 			<Footer />
 		</Layout>

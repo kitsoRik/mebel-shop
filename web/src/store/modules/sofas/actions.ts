@@ -1,11 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../../providers/api";
 import { Sofa } from "./types";
-
-export interface GetSofasFilter {
-	minMaxWeight: number;
-	maxMaxWeight: number;
-}
+import { GetSofasFilter } from "@mebel-shop/data-objects";
 
 export interface GetSofasFullfiledAction {
 	meta: {

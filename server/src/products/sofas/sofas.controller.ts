@@ -17,6 +17,7 @@ import { SofasService } from './sofas.service';
 import { AddSofaDto } from './dto/add-sofa.dto';
 import { AccessAdmin } from '../../auth/user/users.decorator';
 import { GetSofasDto } from './dto/get-sofas.dto';
+import { GetPopularSofasDto } from './dto/get-popular-sofas.dto';
 import { SaveManufacturesDto } from '../../manufactures/dto/save-manufactures.dto';
 import { SaveSofaDto } from './dto/save-sofa.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
@@ -44,7 +45,7 @@ export class SofasController {
 		}),
 	)
 	async addSofa(
-		@Body() addSofaDto: AddSofaDto,
+		@Body(new ValidationPipe({ transform: true })) addSofaDto: AddSofaDto,
 		@UploadedFiles() photos,
 	): Promise<{ sofa: Sofa }> {
 		const sofa = await this.sofasService.addSofa(addSofaDto, photos);
@@ -53,11 +54,28 @@ export class SofasController {
 	}
 
 	@Get('/')
-	@AccessAdmin()
-	getManufactures(
+	getSofas(
 		@Query(new ValidationPipe({ transform: true })) getSofas: GetSofasDto,
 	): Promise<{ sofas: Sofa[]; count: number }> {
 		return this.sofasService.getSofas(getSofas);
+	}
+
+	@Get('/popular/')
+	getPopularSofas(
+		@Query(new ValidationPipe({ transform: true }))
+		getPopularSofas: GetPopularSofasDto,
+	): Promise<Sofa[]> {
+		return this.sofasService.getPopularSofas(getPopularSofas);
+	}
+
+	@Get('/:id')
+	getSofa(@Param('id') id: string): Promise<Sofa> {
+		if (isNaN(+id)) {
+			throw new BadRequestException(
+				`id must be number, but got "${id}""`,
+			);
+		}
+		return this.sofasService.getSofa(+id);
 	}
 
 	@Put('/:id')
@@ -77,10 +95,9 @@ export class SofasController {
 			}),
 		}),
 	)
-	@UsePipes(ValidationPipe)
 	async saveManufacture(
 		@Param('id') id: string,
-		@Body() saveSofaDto: SaveSofaDto,
+		@Body(new ValidationPipe({ transform: true })) saveSofaDto: SaveSofaDto,
 		@UploadedFiles() photos,
 	): Promise<{ sofa: Sofa }> {
 		if (isNaN(+id)) {

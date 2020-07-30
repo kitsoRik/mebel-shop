@@ -1,7 +1,11 @@
 import React from "react";
 
-const ProductsPageHeader = () => {
-	return <h1>Products</h1>;
+interface Props {
+	title: string;
+}
+
+const ProductsPageHeader = ({ title }: Props) => {
+	return <h1>{title}</h1>;
 };
 
 export default ProductsPageHeader;

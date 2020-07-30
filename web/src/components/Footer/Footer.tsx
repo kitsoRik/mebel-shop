@@ -6,7 +6,9 @@ const Footer = () => {
 	return (
 		<Layout.Footer style={{ padding: 0 }}>
 			<Menu theme="dark">
-				<Menu.Item>123</Menu.Item>
+				<Menu.Item disabled={true}>
+					© Интернет-магазин 2020-2020
+				</Menu.Item>
 			</Menu>
 		</Layout.Footer>
 	);

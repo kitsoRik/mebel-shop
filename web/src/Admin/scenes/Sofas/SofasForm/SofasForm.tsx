@@ -22,15 +22,24 @@ interface EditProps {
 const SofasForm = (props: AddProps | EditProps) => {
 	const [form] = useForm();
 	const onFinish = async () => {
+		const {
+			manufactureId,
+			name,
+			photos,
+			description,
+			price,
+			maxWeight,
+			color,
+			depth,
+			weight,
+			height,
+			features,
+			frameMaterial,
+			width,
+			guarantee,
+			upholsteryMaterial
+		} = form.getFieldsValue();
 		if ("edit" in props) {
-			const {
-				manufactureId,
-				name,
-				photos,
-				description,
-				price,
-				maxWeight
-			} = form.getFieldsValue();
 			const removedPhotos =
 				typeof photos[0] === "string"
 					? []
@@ -49,7 +58,18 @@ const SofasForm = (props: AddProps | EditProps) => {
 					description,
 					price: +price,
 					photos: [],
-					characteristics: { maxWeight: +maxWeight }
+					characteristics: {
+						maxWeight: +maxWeight,
+						color,
+						depth: +depth,
+						weight: +weight,
+						height: +height,
+						features,
+						frameMaterial,
+						width: +width,
+						guarantee,
+						upholsteryMaterial
+					}
 				},
 				photos
 					.filter((p: UploadFile) => !!p.originFileObj)
@@ -62,14 +82,6 @@ const SofasForm = (props: AddProps | EditProps) => {
 				props.afterEdited();
 			}
 		} else {
-			const {
-				manufactureId,
-				name,
-				photos,
-				description,
-				price,
-				maxWeight
-			} = form.getFieldsValue();
 			const { error }: any = await props.addAction(
 				{
 					id: -1,
@@ -79,7 +91,18 @@ const SofasForm = (props: AddProps | EditProps) => {
 					description,
 					price: +price,
 					photos: [],
-					characteristics: { maxWeight: +maxWeight }
+					characteristics: {
+						maxWeight: +maxWeight,
+						color,
+						depth: +depth,
+						weight: +weight,
+						height: +height,
+						features,
+						frameMaterial,
+						width: +width,
+						guarantee,
+						upholsteryMaterial
+					}
 				},
 				photos.map((p: UploadFile) => p.originFileObj)
 			);
@@ -139,17 +162,123 @@ const SofasForm = (props: AddProps | EditProps) => {
 			</Form.Item>
 			<div>
 				<Form.Item
+					label="Ширина"
+					name="width"
+					initialValue={initialValues?.characteristics?.width}
+					rules={[
+						{ required: true, message: "Введіть ширину" },
+						{
+							type: "number",
+							transform: (a) => +a,
+							message: "Ширина має бути вказана цифрою"
+						}
+					]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
+					label="Висота"
+					name="height"
+					initialValue={initialValues?.characteristics?.height}
+					rules={[
+						{ required: true, message: "Введіть висоту" },
+						{
+							type: "number",
+							transform: (a) => +a,
+							message: "Висота повинна бути вказано цифрою"
+						}
+					]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
+					label="Глубина"
+					name="depth"
+					initialValue={initialValues?.characteristics?.depth}
+					rules={[
+						{ required: true, message: "Введіть глубину" },
+						{
+							type: "number",
+							transform: (a) => +a,
+							message: "Глубина повинна бути вказано цифрою"
+						}
+					]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
+					label="Вага"
+					name="weight"
+					initialValue={initialValues?.characteristics?.weight}
+					rules={[
+						{ required: true, message: "Введіть вагу" },
+						{
+							type: "number",
+							transform: (a) => +a,
+							message: "Вага повинна бути вказано цифрою"
+						}
+					]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
 					label="Максимальне навантаження"
 					name="maxWeight"
 					initialValue={initialValues?.characteristics?.maxWeight}
 					rules={[
-						{ required: true, message: "Введіть ціну" },
+						{
+							required: true,
+							message: "Введіть максимальне навантаження"
+						},
 						{
 							type: "number",
 							transform: (a) => +a,
-							message: "Ціна повинна бути вказано цифрою"
+							message:
+								"Максимальне навантаження повинне бути вказано цифрою"
 						}
 					]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
+					label="Колір"
+					name="color"
+					initialValue={initialValues?.characteristics?.color}
+					rules={[{ required: true, message: "Введіть колір" }]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
+					label="Матеріл оббивки"
+					name="upholsteryMaterial"
+					initialValue={
+						initialValues?.characteristics?.upholsteryMaterial
+					}
+					rules={[{ required: true, message: "Матеріл оббивки" }]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
+					label="Матеріл тканини"
+					name="frameMaterial"
+					initialValue={initialValues?.characteristics?.frameMaterial}
+					rules={[{ required: true, message: "Матеріл тканини" }]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
+					label="Особливості"
+					name="features"
+					initialValue={initialValues?.characteristics?.features}
+					rules={[{ required: true, message: "Особливості" }]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
+					label="Гарантія"
+					name="guarantee"
+					initialValue={initialValues?.characteristics?.guarantee}
+					rules={[{ required: true, message: "Гарантія" }]}
 				>
 					<Input />
 				</Form.Item>

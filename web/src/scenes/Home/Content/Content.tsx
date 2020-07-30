@@ -1,9 +1,10 @@
 import React from "react";
 import SofasCarousel from "./SofasCarousel";
+import classes from "./Content.module.scss";
 
 const Content = () => {
 	return (
-		<div>
+		<div className={classes.content}>
 			<SofasCarousel />
 		</div>
 	);

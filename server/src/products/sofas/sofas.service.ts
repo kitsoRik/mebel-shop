@@ -4,6 +4,7 @@ import { GetSofasDto } from './dto/get-sofas.dto';
 import { SaveSofaDto } from './dto/save-sofa.dto';
 import { Sofa } from './sofa.entity';
 import { SofaRepository } from './sofa.repository';
+import { GetPopularSofasDto } from './dto/get-popular-sofas.dto';
 
 type Photo = {
 	filename: '1033731d3a20c213b193a221238192f161c262820113c31223cb3b353b.jpeg';
@@ -28,6 +29,19 @@ export class SofasService {
 			sofas,
 			count,
 		};
+	}
+
+	async getPopularSofas(
+		getPopularSofasDto: GetPopularSofasDto,
+	): Promise<Sofa[]> {
+		const sofas = await this.sofaRepository.getPopularSofas(
+			getPopularSofasDto,
+		);
+		return sofas;
+	}
+
+	async getSofa(id: number): Promise<Sofa> {
+		return this.sofaRepository.getSofa(id);
 	}
 
 	async saveSofa(

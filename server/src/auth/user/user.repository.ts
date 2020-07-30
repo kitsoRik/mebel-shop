@@ -21,7 +21,7 @@ export class UserRepository extends Repository<User> {
 	async signIn(signInDto: SignInDto): Promise<User> {
 		const { username, password } = signInDto;
 
-		const user = await this.findOne({ username });
+		const user = await this.findOne({ username, password });
 
 		return user;
 	}

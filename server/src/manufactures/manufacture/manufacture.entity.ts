@@ -2,10 +2,10 @@ import {
 	BaseEntity,
 	Column,
 	Entity,
-	ObjectIdColumn,
-	PrimaryColumn,
 	PrimaryGeneratedColumn,
+	OneToMany,
 } from 'typeorm';
+import { Sofa } from 'src/products/sofas/sofa.entity';
 
 @Entity()
 export class Manufacture extends BaseEntity {
@@ -14,4 +14,11 @@ export class Manufacture extends BaseEntity {
 
 	@Column()
 	name: string;
+
+	@OneToMany(
+		type => Sofa,
+		sofa => sofa.manufacture,
+		{ eager: false },
+	)
+	sofas: Sofa[];
 }

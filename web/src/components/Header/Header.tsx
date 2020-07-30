@@ -22,7 +22,7 @@ const Header = () => {
 			<div className={classes.upper}>
 				<Menu theme="dark" mode="horizontal" style={{ height: 64 }}>
 					<Menu.Item key="main" active={location.pathname === "/"}>
-						<Link to="/d">Головна</Link>
+						<Link to="/">Головна</Link>
 					</Menu.Item>
 					<SubMenu title="Каталог">
 						<Menu.Item>

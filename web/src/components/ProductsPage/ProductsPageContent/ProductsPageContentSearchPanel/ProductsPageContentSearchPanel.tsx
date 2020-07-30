@@ -10,7 +10,7 @@ interface Props {
 
 const ProductsPageContentSearchPanel = ({ children, onSearch }: Props) => {
 	return (
-		<Form className={classes.form}>
+		<Form className={classes.form} layout="vertical">
 			{children}
 			<Form.Item>
 				<Button

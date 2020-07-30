@@ -1,4 +1,9 @@
 .slider {
+	display: flex;
+	flex-direction: column;
+}
+
+.card {
 	padding: 6px;
 
 	row-gap: 5px;

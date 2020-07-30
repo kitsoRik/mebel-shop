@@ -1,5 +1,5 @@
 import { get, baseUrl } from "./api";
-import { GetSofasFilter } from "../../store/modules/sofas/actions";
+import { GetSofasFilter } from "@mebel-shop/data-objects";
 
 export const baseUrlSofas = `${baseUrl}/static/sofas/`;
 

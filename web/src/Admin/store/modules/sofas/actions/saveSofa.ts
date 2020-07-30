@@ -23,7 +23,7 @@ export const saveSofaCreator = createAsyncThunk(
 			sofa.name,
 			sofa.price,
 			sofa.description,
-			sofa.characteristics,
+			sofa.characteristics!,
 			photos,
 			removedPhotos
 		);

@@ -33,8 +33,19 @@ const ProductPageSofa = () => {
 		<Photo url={`${baseUrl}/static/sofas/photos/${a}`} />
 	));
 
+	if (!sofa.characteristics) return null;
+
 	const dataSource: string[][] = [
-		["Максимальне навантаження", `${sofa.characteristics.maxWeight} кг/м2`]
+		["Ширина", `${sofa.characteristics.width} см`],
+		["Висота", `${sofa.characteristics.height} см`],
+		["Глубина", `${sofa.characteristics.depth} см`],
+		["Вага", `${sofa.characteristics.weight} кг`],
+		["Максимальне навантаження", `${sofa.characteristics.maxWeight} кг/м2`],
+		["Колір", `${sofa.characteristics.color}`],
+		["Матеріал оббивки", `${sofa.characteristics.upholsteryMaterial}`],
+		["Максимальне корпусу", `${sofa.characteristics.frameMaterial}`],
+		["Особливості", `${sofa.characteristics.features}`],
+		["Гарантія", `${sofa.characteristics.guarantee}`]
 	];
 
 	return (
