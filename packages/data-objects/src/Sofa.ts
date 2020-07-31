@@ -1,11 +1,13 @@
-export class Sofa {
+import { IProduct } from './Product';
+
+export class Sofa implements IProduct {
 	id: number = -1;
-	manufactureId: number = -1;
 	name: string = '';
 	description: string = '';
 	price: number = 0;
-
 	photos: string[] = [];
+
+	manufactureId: number = -1;
 
 	characteristics: ISofaCharacteristics | null = null;
 }

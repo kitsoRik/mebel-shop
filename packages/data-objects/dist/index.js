@@ -16,4 +16,5 @@ var UserRole;
     UserRole["ADMIN"] = "ADMIN";
 })(UserRole = exports.UserRole || (exports.UserRole = {}));
 __exportStar(require("./Sofa"), exports);
+__exportStar(require("./Manufacture"), exports);
 //# sourceMappingURL=index.js.map

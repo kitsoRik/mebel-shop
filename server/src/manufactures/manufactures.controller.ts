@@ -40,6 +40,13 @@ export class ManufacturesController {
 		return this.manufacturesService.getManufactures(getManufacturesDto);
 	}
 
+	@Get('/popular')
+	getPopularManufactures(
+		@Query(ValidationPipe) getManufacturesDto: GetManufacturesDto,
+	): Promise<{ manufactures: Manufacture[]; count: number }> {
+		return this.manufacturesService.getManufactures(getManufacturesDto);
+	}
+
 	@Get('/min/')
 	@AccessAdmin()
 	async getMinManufactures(
@@ -53,7 +60,6 @@ export class ManufacturesController {
 	}
 
 	@Get('/:id')
-	@AccessAdmin()
 	async getManufacture(
 		@Param('id') id: string,
 	): Promise<{ manufacture: Manufacture }> {

@@ -1,5 +1,7 @@
 export enum UserRole {
-	ADMIN = "ADMIN",
+	ADMIN = 'ADMIN',
 }
 
+export * from './Product';
 export * from './Sofa';
+export * from './Manufacture';

@@ -1,10 +1,10 @@
 import classes from "./Product.module.scss";
 import React from "react";
-import { IProduct } from "../../models/interfaces/Product";
 import { Avatar, Card } from "antd";
 
 import Meta from "antd/lib/card/Meta";
 import { useHistory } from "react-router";
+import { IProduct } from "@mebel-shop/data-objects/dist/Product";
 
 interface Props {
 	product: IProduct;

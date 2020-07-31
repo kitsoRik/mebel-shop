@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../../providers/api";
-import { Sofa } from "./types";
-import { GetSofasFilter } from "@mebel-shop/data-objects";
+import { GetSofasFilter, Sofa } from "@mebel-shop/data-objects";
 
 export interface GetSofasFullfiledAction {
 	meta: {

@@ -1,10 +1,11 @@
-export declare class Sofa {
+import { IProduct } from './Product';
+export declare class Sofa implements IProduct {
     id: number;
-    manufactureId: number;
     name: string;
     description: string;
     price: number;
     photos: string[];
+    manufactureId: number;
     characteristics: ISofaCharacteristics | null;
 }
 export interface ISofaCharacteristics {

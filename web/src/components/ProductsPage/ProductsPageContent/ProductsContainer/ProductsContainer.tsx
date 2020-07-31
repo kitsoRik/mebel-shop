@@ -1,7 +1,7 @@
 import classes from "./ProductsContainer.module.scss";
 import React from "react";
-import { IProduct } from "../../../../models/interfaces/Product";
 import Product from "../../../../shared/Product";
+import { IProduct } from "@mebel-shop/data-objects/dist/Product";
 
 interface Props {
 	products: IProduct[];

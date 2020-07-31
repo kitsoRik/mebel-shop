@@ -1,11 +1,5 @@
-import { IProduct } from "../../../models/interfaces/Product";
 import { Manufacture } from "../../../Admin/store/modules/manufactures/types";
-
-export interface Sofa extends IProduct {
-	id: number;
-	name: string;
-	manufacture: Manufacture;
-}
+import { Sofa } from "@mebel-shop/data-objects";
 
 export interface SofasState {
 	sofas: { [name: string]: Sofa };
