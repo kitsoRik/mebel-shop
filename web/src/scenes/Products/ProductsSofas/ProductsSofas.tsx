@@ -11,6 +11,7 @@ import ProductsPageContentSearchPanel from "../../../components/ProductsPage/Pro
 import ProductsSofasPageContentSearchPanel from "./ProductsSofasPageContentSearchPanel";
 import { selectSofasByPage } from "../../../store/modules/sofas/selectors";
 import { getSofas } from "../../../store/modules/sofas/actions";
+import { RootState } from "../../../store";
 
 interface Props {
 	getSofas: typeof getSofas;
@@ -91,7 +92,7 @@ const ProductsSofas = ({ getSofas }: Props) => {
 
 	useEffect(() => {
 		handleSearch();
-	}, []);
+	}, [page]);
 
 	const handleSearch = () => {
 		getSofas(
@@ -113,13 +114,24 @@ const ProductsSofas = ({ getSofas }: Props) => {
 	};
 
 	const sofas = useSelector(selectSofasByPage(page));
+	const totalPages = Math.ceil(
+		useSelector((state: RootState) => state.sofas.sofasNumbers) / limit
+	);
+
+	useEffect(() => {
+		if (totalPages < page && totalPages !== 0) {
+			setPage(totalPages);
+		}
+	}, [totalPages]);
 
 	return (
 		<ProductsPage>
 			<ProductsPageHeader title="Дивани" />
 			<ProductsPageContent
+				productPageBaseUrl="/products/sofas/"
 				photosBaseUrl={`${baseUrl}/static/sofas/photos/`}
 				products={sofas}
+				pagesCount={totalPages}
 			>
 				<ProductsPageContentSearchPanel onSearch={handleSearch}>
 					<ProductsSofasPageContentSearchPanel />

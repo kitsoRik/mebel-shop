@@ -4,7 +4,7 @@ import { useLocationField } from "react-location-query";
 import { useForm } from "antd/lib/form/Form";
 
 const FormDialog = () => {
-	const [buy, setBuy] = useLocationField<boolean>("buy");
+	const [buy, setBuy] = useLocationField("buy");
 
 	const [form] = useForm();
 

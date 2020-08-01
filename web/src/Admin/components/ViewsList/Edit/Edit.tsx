@@ -7,7 +7,7 @@ interface Props {
 }
 
 const Edit = ({ form }: Props) => {
-	const [edit, setEdit] = useLocationField<string>("edit");
+	const [edit, setEdit] = useLocationField("edit");
 
 	return (
 		<Modal

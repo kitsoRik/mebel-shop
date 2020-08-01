@@ -54,7 +54,6 @@ export const saveSofa = (
 
 	for (let i = 0; i < photos.length; i++) {
 		const photo = photos[i];
-		console.log(photos);
 		if (typeof photo === "string") {
 			formData.append("photos", new Blob([]), "");
 		} else formData.append("photos", photo, photo.name);

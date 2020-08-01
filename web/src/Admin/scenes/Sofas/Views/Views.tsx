@@ -25,8 +25,16 @@ const Views = ({ getSofas }: Props) => {
 		initial: 20,
 		hideIfInitial: true
 	});
-	const [name] = useLocationField<string>("name");
-	const [manufacture] = useLocationField<number>("manufacture");
+	const [name] = useLocationField("name", {
+		type: "string",
+		initial: "",
+		hideIfInitial: true
+	});
+	const [manufacture] = useLocationField("manufacture", {
+		type: "number",
+		initial: -1,
+		hideIfInitial: true
+	});
 
 	const items = useAdminSelector(selectSofasByPage(page));
 	const totalItems = useAdminSelector((s) => s.sofas.sofasNumbers);

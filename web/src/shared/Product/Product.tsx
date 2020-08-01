@@ -7,19 +7,45 @@ import { useHistory } from "react-router";
 import { IProduct } from "@mebel-shop/data-objects/dist/Product";
 
 interface Props {
-	product: IProduct;
-	photoUrl: string;
+	exgibit?: true;
+	exgibitCover?: JSX.Element;
+	onExgibitClick?: () => void;
+
+	product?: IProduct;
+	productPageUrlBase?: string;
+	photoUrl?: string;
 }
 
-const Product = ({ product, photoUrl }: Props) => {
+const Product = ({
+	exgibit,
+	exgibitCover,
+	onExgibitClick,
+
+	product,
+	photoUrl = "",
+	productPageUrlBase = ""
+}: Props) => {
 	const history = useHistory();
+
+	if (exgibit) {
+		return (
+			<Card
+				hoverable
+				style={{ width: 240, height: 385 }}
+				cover={exgibitCover}
+				onClick={onExgibitClick}
+			></Card>
+		);
+	}
+
+	if (!product) throw new Error("No product");
 
 	return (
 		<Card
 			hoverable
 			style={{ width: 240, height: 385 }}
 			cover={<img alt="example" src={photoUrl} />}
-			onClick={() => history.push(`/products/sofas/${product.id}`)}
+			onClick={() => history.push(`${productPageUrlBase}${product.id}`)}
 		>
 			<Meta
 				title={<span>{product.name}</span>}

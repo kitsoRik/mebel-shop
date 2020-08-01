@@ -9,5 +9,14 @@ export const selectSofasByPage = (page: number) => ({
 	sofas: { sofas, pages }
 }: RootState): Sofa[] =>
 	Object.keys(sofas)
-		.filter((k) => (pages[page] ?? []).includes(+k))
+		.filter((k) => {
+			let pagesAll: number[] = [];
+
+			for (let i = 0; i < page; i++) {
+				const current = pages[page] ?? [];
+				pagesAll = [...pagesAll, ...current];
+			}
+			return pagesAll.includes(+k);
+		})
+
 		.map((key) => sofas[key]);

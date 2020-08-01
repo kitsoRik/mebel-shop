@@ -10,6 +10,7 @@ export interface GetSofasFullfiledAction {
 	};
 	payload: {
 		sofas: Sofa[];
+		count: number;
 	};
 }
 
@@ -24,13 +25,13 @@ export const getSofasCreator = createAsyncThunk(
 		filter: GetSofasFilter;
 		limit: number;
 	}) => {
-		const { sofas } = await api.sofas.getSofas(
+		const { sofas, count } = await api.sofas.getSofas(
 			(page - 1) * limit,
 			filter,
 			limit
 		);
 
-		return { sofas };
+		return { sofas, count };
 	}
 );
 

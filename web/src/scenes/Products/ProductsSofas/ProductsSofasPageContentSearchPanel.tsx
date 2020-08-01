@@ -3,14 +3,9 @@ import { Form, Input, InputNumber, Slider } from "antd";
 import { useLocationField } from "react-location-query";
 
 const ProductsSofasPageContentSearchPanel = () => {
-	const [minMaxWeight, setMinMaxWeight] = useLocationField<number>(
-		"minMaxWeight"
-	);
+	const [minMaxWeight, setMinMaxWeight] = useLocationField("minMaxWeight");
 
-	const [maxMaxWeight, setMaxMaxWeight] = useLocationField<number>(
-		"maxMaxWeight"
-	);
-
+	const [maxMaxWeight, setMaxMaxWeight] = useLocationField("maxMaxWeight");
 	const [minWidth, setMinWidth] = useLocationField("minWidth", {
 		type: "number",
 		initial: 0,

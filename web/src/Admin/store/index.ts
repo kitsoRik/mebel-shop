@@ -4,17 +4,19 @@ import { manufacturesReducer } from "./modules/manufactures/reducer";
 import { sofasReducer } from "./modules/sofas/reducer";
 import {
 	TypedUseSelectorHook,
-	useSelector as useReduxSelector,
+	useSelector as useReduxSelector
 } from "react-redux";
+import { bedsReducer } from "./modules/beds/reducer";
 
 const reducer = combineReducers({
 	user: userReducer,
 	manufactures: manufacturesReducer,
 	sofas: sofasReducer,
+	beds: bedsReducer
 });
 
 const store = configureStore({
-	reducer,
+	reducer
 });
 
 export type AdminState = ReturnType<typeof reducer>;

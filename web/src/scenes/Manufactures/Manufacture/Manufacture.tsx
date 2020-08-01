@@ -31,16 +31,20 @@ const Manufacture = () => {
 			<ProductsPage>
 				<ProductsPageHeader title="Дивани" />
 				<ProductsPageContent
+					productPageBaseUrl="/products/sofas/"
 					photosBaseUrl={`${baseUrl}/static/sofas/photos/`}
 					products={products}
+					pagesCount={1}
 				></ProductsPageContent>
 			</ProductsPage>
 
 			<ProductsPage>
 				<ProductsPageHeader title="Дивани" />
 				<ProductsPageContent
+					productPageBaseUrl="/products/sofas/"
 					photosBaseUrl={`${baseUrl}/static/sofas/photos/`}
 					products={products}
+					pagesCount={1}
 				></ProductsPageContent>
 			</ProductsPage>
 		</div>

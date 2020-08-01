@@ -6,12 +6,15 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
+import { BrowserLocationQuery } from "react-location-query";
 
 ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<Provider store={store}>
-				<App />
+				<BrowserLocationQuery>
+					<App />
+				</BrowserLocationQuery>
 			</Provider>
 		</BrowserRouter>
 	</React.StrictMode>,

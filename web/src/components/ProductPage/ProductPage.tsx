@@ -23,7 +23,7 @@ const ProductPage = ({ children }: Props) => {
 
 	return (
 		<div className={classes.page}>
-			<Tabs activeKey={tab} onTabClick={setTab}>
+			<Tabs activeKey={tab} onTabClick={(value) => setTab(value)}>
 				<Tabs.TabPane tab="Огляд" key="overview">
 					{overview}
 				</Tabs.TabPane>

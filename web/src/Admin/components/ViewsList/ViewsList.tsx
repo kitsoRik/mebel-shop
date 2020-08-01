@@ -43,7 +43,7 @@ const ViewsList = ({
 		hideIfInitial: true
 	});
 
-	const [limit] = useLocationField<number>("limit");
+	const [limit] = useLocationField("limit");
 
 	return (
 		<>

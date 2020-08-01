@@ -7,7 +7,7 @@ interface Props {
 }
 
 const Add = ({ form }: Props) => {
-	const [add, setAdd] = useLocationField<boolean>("add");
+	const [add, setAdd] = useLocationField("add");
 
 	return (
 		<Modal

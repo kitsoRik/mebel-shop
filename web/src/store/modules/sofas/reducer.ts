@@ -14,10 +14,11 @@ const sofasReducer = createReducer(sofasState, {
 		action: GetSofasFullfiledAction
 	) => {
 		const { page } = action.meta.arg;
-		const { sofas } = action.payload;
+		const { sofas, count } = action.payload;
 		return {
 			...state,
 			pages: { ...state.pages, [page]: sofas.map((s) => s.id) },
+			sofasNumbers: count,
 			sofas: {
 				...state.sofas,
 				...sofas.reduce((p, sofa) => ({ ...p, [sofa.id]: sofa }), {})

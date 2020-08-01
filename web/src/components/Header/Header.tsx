@@ -14,7 +14,6 @@ const Header = () => {
 		<Layout.Header
 			style={{
 				height: 64,
-				background: "white",
 				padding: 0
 			}}
 			color="white"
@@ -24,15 +23,33 @@ const Header = () => {
 					<Menu.Item key="main" active={location.pathname === "/"}>
 						<Link to="/">Головна</Link>
 					</Menu.Item>
+					<Menu.Item
+						key="manufactures"
+						active={location.pathname === "/"}
+					>
+						<Link to="/">Виробники</Link>
+					</Menu.Item>
 					<SubMenu title="Каталог">
 						<Menu.Item>
 							<Link to="/products/sofas/">Дивани</Link>
 						</Menu.Item>
-						<Menu.Item>Ліжка</Menu.Item>
+						<Menu.Item>
+							<Link to="/products/beds/">Ліжка</Link>
+						</Menu.Item>
 						<Menu.Item>Кухні</Menu.Item>
 					</SubMenu>
 				</Menu>
-				<UserIcon />
+				<Menu theme="dark" mode="horizontal" style={{ height: 64 }}>
+					<Menu.Item key="about" active={location.pathname === "/"}>
+						<Link to="/about">Про нас</Link>
+					</Menu.Item>
+					<Menu.Item
+						key="contacts"
+						active={location.pathname === "/"}
+					>
+						<Link to="/contacts">Контакти</Link>
+					</Menu.Item>
+				</Menu>
 			</div>
 		</Layout.Header>
 	);
