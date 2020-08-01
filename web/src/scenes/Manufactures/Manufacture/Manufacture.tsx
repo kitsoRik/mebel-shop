@@ -6,11 +6,22 @@ import ProductsPageContent from "../../../components/ProductsPage/ProductsPageCo
 import { baseUrl } from "../../../providers/api/api";
 import api from "../../../providers/api";
 import { IProduct } from "@mebel-shop/data-objects/dist/Product";
+import { useLocationField } from "react-location-query";
 
 const Manufacture = () => {
 	const { id } = useParams();
 
 	const [products, setProducts] = useState<IProduct[] | null>(null);
+	const [] = useLocationField("page", {
+		type: "number",
+		initial: 1,
+		hideIfInitial: true
+	});
+	const [] = useLocationField("limit", {
+		type: "number",
+		initial: 10,
+		hideIfInitial: true
+	});
 
 	useEffect(() => {
 		handleSearch();

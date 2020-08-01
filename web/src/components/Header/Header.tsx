@@ -25,9 +25,9 @@ const Header = () => {
 					</Menu.Item>
 					<Menu.Item
 						key="manufactures"
-						active={location.pathname === "/"}
+						active={location.pathname === "/manufactures"}
 					>
-						<Link to="/">Виробники</Link>
+						<Link to="/manufactures">Виробники</Link>
 					</Menu.Item>
 					<SubMenu title="Каталог">
 						<Menu.Item>

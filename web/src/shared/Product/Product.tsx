@@ -31,7 +31,7 @@ const Product = ({
 		return (
 			<Card
 				hoverable
-				style={{ width: 240, height: 385 }}
+				style={{ height: 385 }}
 				cover={exgibitCover}
 				onClick={onExgibitClick}
 			></Card>
@@ -43,7 +43,7 @@ const Product = ({
 	return (
 		<Card
 			hoverable
-			style={{ width: 240, height: 385 }}
+			style={{ width: "100%", height: 385 }}
 			cover={<img alt="example" src={photoUrl} />}
 			onClick={() => history.push(`${productPageUrlBase}${product.id}`)}
 		>

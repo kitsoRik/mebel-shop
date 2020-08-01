@@ -1,0 +1,15 @@
+.wrapper {
+	flex: 1;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	column-gap: 20px;
+	row-gap: 20px;
+}
+
+.best {
+	grid-row: 1 / span 2;
+}
+
+.recomended {
+}
