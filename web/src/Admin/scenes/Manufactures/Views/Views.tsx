@@ -50,9 +50,6 @@ const Views = ({ getManufactures }: Props) => {
 					]}
 				>
 					<List.Item.Meta
-						avatar={
-							<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-						}
 						title={
 							<Link to={`/admin/views/manufactures/${id}`}>
 								{name}

@@ -4,7 +4,7 @@ import { getPopularSofas, baseUrlSofas } from "../../../../providers/api/sofas";
 import ProductsCarousel from "../../../../components/ProductsCarousel";
 import { Sofa } from "@mebel-shop/data-objects";
 
-const SofasCarousel = () => {
+const SalesCarousel = () => {
 	const [sofas, setSofas] = useState<Sofa[]>([]);
 
 	useEffect(() => {
@@ -18,7 +18,7 @@ const SofasCarousel = () => {
 
 	return (
 		<div>
-			<Typography.Title>Найпопулярніші дивани</Typography.Title>
+			<Typography.Title>Акційні товари </Typography.Title>
 			<ProductsCarousel
 				products={sofas}
 				renderProduct={(product: Sofa) => (
@@ -32,4 +32,4 @@ const SofasCarousel = () => {
 	);
 };
 
-export default SofasCarousel;
+export default SalesCarousel;

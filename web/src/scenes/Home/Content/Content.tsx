@@ -1,5 +1,5 @@
 import React from "react";
-import SofasCarousel from "./SofasCarousel";
+import SofasCarousel from "./SalesCarousel";
 import classes from "./Content.module.scss";
 
 const Content = () => {

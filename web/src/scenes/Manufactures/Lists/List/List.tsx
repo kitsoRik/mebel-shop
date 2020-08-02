@@ -25,9 +25,6 @@ const List = () => {
 				renderItem={(item) => (
 					<ListD.Item>
 						<ListD.Item.Meta
-							avatar={
-								<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-							}
 							title={
 								<a href="https://ant.design">{item.title}</a>
 							}
