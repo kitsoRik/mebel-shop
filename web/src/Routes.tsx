@@ -8,6 +8,8 @@ import About from "./scenes/About";
 import Contacts from "./scenes/Contacts";
 import ProductsBeds from "./scenes/Products/ProductsBeds";
 import ProductPageBed from "./components/ProductPage/ProductPageBed";
+import ProductsWardrobes from "./scenes/Products/ProductsWardrobes";
+import ProductPageWardrobe from "./components/ProductPage/ProductPageWardrobe";
 
 const productsTypes = ["sofas", "beds"];
 
@@ -32,6 +34,17 @@ const Routes = () => {
 				path={`/products/beds/:id`}
 				exact
 				component={ProductPageBed}
+			/>
+
+			<Route
+				path={`/products/wardrobes`}
+				exact
+				component={ProductsWardrobes}
+			/>
+			<Route
+				path={`/products/wardrobes/:id`}
+				exact
+				component={ProductPageWardrobe}
 			/>
 		</Switch>
 	);

@@ -7,12 +7,14 @@ import {
 	useSelector as useReduxSelector
 } from "react-redux";
 import { bedsReducer } from "./modules/beds/reducer";
+import { wardrobesReducer } from "./modules/wardrobes/reducer";
 
 const reducer = combineReducers({
 	user: userReducer,
 	manufactures: manufacturesReducer,
 	sofas: sofasReducer,
-	beds: bedsReducer
+	beds: bedsReducer,
+	wardrobes: wardrobesReducer
 });
 
 const store = configureStore({

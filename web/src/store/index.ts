@@ -6,11 +6,13 @@ import {
 } from "react-redux";
 import sofasReducer from "./modules/sofas/reducer";
 import bedsReducer from "./modules/beds/reducer";
+import wardrobesReducer from "./modules/wardrobes/reducer";
 
 const reducer = combineReducers({
 	user: userReducer,
 	sofas: sofasReducer,
-	beds: bedsReducer
+	beds: bedsReducer,
+	wardrobes: wardrobesReducer
 });
 
 const store = configureStore({

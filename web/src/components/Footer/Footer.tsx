@@ -7,7 +7,7 @@ const Footer = () => {
 		<Layout.Footer style={{ padding: 0 }}>
 			<Menu theme="dark">
 				<Menu.Item disabled={true}>
-					© Интернет-магазин 2020-2020
+					© Інтернет-магазин 2020-2020
 				</Menu.Item>
 			</Menu>
 		</Layout.Footer>

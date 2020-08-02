@@ -29,15 +29,15 @@ const Header = () => {
 					>
 						<Link to="/manufactures">Виробники</Link>
 					</Menu.Item>
-					<SubMenu title="Каталог">
-						<Menu.Item>
-							<Link to="/products/sofas/">Дивани</Link>
-						</Menu.Item>
-						<Menu.Item>
-							<Link to="/products/beds/">Ліжка</Link>
-						</Menu.Item>
-						<Menu.Item>Кухні</Menu.Item>
-					</SubMenu>
+					<Menu.Item>
+						<Link to="/products/sofas/">Дивани</Link>
+					</Menu.Item>
+					<Menu.Item>
+						<Link to="/products/beds/">Ліжка</Link>
+					</Menu.Item>
+					<Menu.Item>
+						<Link to="/products/wardrobes/">Шафи</Link>
+					</Menu.Item>
 				</Menu>
 				<Menu theme="dark" mode="horizontal" style={{ height: 64 }}>
 					<Menu.Item key="about" active={location.pathname === "/"}>

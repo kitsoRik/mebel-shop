@@ -1,7 +1,7 @@
 import {
 	LaptopOutlined,
 	NotificationOutlined,
-	UserOutlined,
+	UserOutlined
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import React, { useEffect } from "react";
@@ -22,7 +22,7 @@ const Admin = ({ authUser }: Props) => {
 	const { data, dataLoading } = useSelector(
 		({ user: { data, dataLoading } }: any) => ({
 			data,
-			dataLoading,
+			dataLoading
 		})
 	);
 	const content = !data ? <LoginContent /> : <AdminContent />;
@@ -56,13 +56,19 @@ const AdminContent = () => (
 		<Layout.Sider width={200} className="site-layout-background">
 			<Menu mode="inline" style={{ height: "100%", borderRight: 0 }}>
 				<Menu.SubMenu key="add" icon={<UserOutlined />} title="Додати">
-					<Menu.Item key="admin">
-						<Link to="/admin/sofas/add">Додати диван</Link>
-					</Menu.Item>
 					<Menu.Item key="manufacture">
 						<Link to="/admin/manufactures/add">
 							Додати виробника
 						</Link>
+					</Menu.Item>
+					<Menu.Item key="іщаф">
+						<Link to="/admin/sofas/add">Додати диван</Link>
+					</Menu.Item>
+					<Menu.Item key="иув">
+						<Link to="/admin/beds/add">Додати ліжко</Link>
+					</Menu.Item>
+					<Menu.Item key="wardrobe">
+						<Link to="/admin/wardrobes/add">Додати шафу</Link>
 					</Menu.Item>
 				</Menu.SubMenu>
 				<Menu.SubMenu
@@ -77,6 +83,12 @@ const AdminContent = () => (
 					</Menu.Item>
 					<Menu.Item key="2">
 						<Link to="/admin/sofas/">Переглянути дивани</Link>
+					</Menu.Item>
+					<Menu.Item key="3">
+						<Link to="/admin/beds/">Переглянути ліжка</Link>
+					</Menu.Item>
+					<Menu.Item key="4">
+						<Link to="/admin/wardrobes/">Переглянути шафи</Link>
 					</Menu.Item>
 				</Menu.SubMenu>
 			</Menu>
