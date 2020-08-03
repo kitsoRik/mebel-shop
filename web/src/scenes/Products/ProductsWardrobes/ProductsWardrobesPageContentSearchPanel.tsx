@@ -3,9 +3,6 @@ import { Form, Input, InputNumber, Slider } from "antd";
 import { useLocationField } from "react-location-query";
 
 const ProductsWardrobesPageContentSearchPanel = () => {
-	const [minMaxWeight, setMinMaxWeight] = useLocationField("minMaxWeight");
-
-	const [maxMaxWeight, setMaxMaxWeight] = useLocationField("maxMaxWeight");
 	const [minWidth, setMinWidth] = useLocationField("minWidth", {
 		type: "number",
 		initial: 0,
@@ -82,15 +79,6 @@ const ProductsWardrobesPageContentSearchPanel = () => {
 				setMinValue={setMinDepth}
 				maxValue={maxDepth}
 				setMaxValue={setMaxDepth}
-			/>
-			<Item
-				label={"Максимальне навантаження"}
-				max={500}
-				sign={"см"}
-				minValue={minMaxWeight}
-				setMinValue={setMinMaxWeight}
-				maxValue={maxMaxWeight}
-				setMaxValue={setMaxMaxWeight}
 			/>
 			<Item
 				label={"Вага"}

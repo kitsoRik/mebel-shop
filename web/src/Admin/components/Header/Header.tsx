@@ -1,5 +1,5 @@
 import classes from "./Header.module.scss";
-import { Button, Layout } from "antd";
+import { Button, Layout, Typography } from "antd";
 import React from "react";
 import { compose } from "redux";
 import { connect, useSelector } from "react-redux";
@@ -15,6 +15,9 @@ const Header = ({ signOut }: Props) => {
 
 	return (
 		<Layout.Header className={classes.adminHeader}>
+			<Typography.Title style={{ color: "white" }}>
+				Адмін панель
+			</Typography.Title>
 			{data && <Button onClick={signOut}>Вийти</Button>}
 		</Layout.Header>
 	);
